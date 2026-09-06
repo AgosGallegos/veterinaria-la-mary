@@ -1,12 +1,6 @@
-/* =========================================================
-   VETERINARIA LA MARY
-   ESTILOS GENERALES
-========================================================= */
-
-
-/* =========================================================
-   VARIABLES DE COLORES
-========================================================= */
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 
 :root {
     --verde: #2a9d8f;
@@ -22,17 +16,7 @@
 
     --gris: #f3f7f6;
     --gris-texto: #657472;
-
-    --sombra: 0 10px 30px rgba(38, 70, 67, 0.10);
-    --sombra-hover: 0 18px 40px rgba(38, 70, 67, 0.16);
-
-    --radio: 20px;
 }
-
-
-/* =========================================================
-   CONFIGURACIÓN GENERAL
-========================================================= */
 
 * {
     margin: 0;
@@ -40,1096 +24,520 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-
-    background-color: var(--crema);
-
     color: var(--azul);
-
+    background-color: var(--crema);
     line-height: 1.6;
 }
-
 
 img {
     max-width: 100%;
     display: block;
 }
 
-
 a {
     text-decoration: none;
+    color: inherit;
+}
+
+.contenedor {
+    width: min(1100px, 90%);
+    margin: 0 auto;
 }
 
 
-section {
-    width: 100%;
-}
-
-
-/* =========================================================
-   NAVEGACIÓN
-========================================================= */
+/* =========================
+   HEADER
+========================= */
 
 .header {
-    width: 100%;
-
     background-color: var(--blanco);
-
     position: sticky;
     top: 0;
-
     z-index: 1000;
-
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-
-.navbar {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 18px 30px;
-
+.nav {
+    min-height: 80px;
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
-
+    justify-content: space-between;
     gap: 30px;
 }
 
-
 .logo {
-    color: var(--azul);
-
-    font-size: 23px;
-
+    font-size: 28px;
     font-weight: 800;
-
+    color: var(--azul);
     white-space: nowrap;
-
-    transition: 0.3s;
 }
 
-
-.logo:hover {
-    color: var(--verde);
-}
-
-
-.menu {
+.nav nav {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 }
 
-
-.menu a {
+.nav nav a {
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 700;
     color: var(--azul);
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    padding: 10px 16px;
-
-    border-radius: 25px;
-
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
-
-.menu a:hover {
+.nav nav a:hover {
     color: var(--verde);
-
-    background-color: #edf8f6;
+    background-color: #eaf7f5;
 }
 
-
-.menu a.activo {
-    color: var(--blanco);
-
+.nav nav a.activo {
     background-color: var(--verde);
-}
-
-
-.menu a.activo:hover {
-    background-color: var(--verde-oscuro);
-
     color: var(--blanco);
 }
 
 
-/* =========================================================
-   HERO / PORTADA
-========================================================= */
+/* =========================
+   PORTADA / HERO
+========================= */
 
 .hero {
-    min-height: 620px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    position: relative;
-
-    overflow: hidden;
+    min-height: 650px;
 
     background-image:
         linear-gradient(
-            rgba(38, 70, 67, 0.62),
-            rgba(42, 157, 143, 0.50)
+            rgba(38, 70, 83, 0.55),
+            rgba(38, 70, 83, 0.55)
         ),
-        url("img/portada.jpg");
+        url("./img/portada.jpg");
 
     background-size: cover;
-
     background-position: center;
-}
 
+    display: flex;
+    align-items: center;
+}
 
 .hero-contenido {
-    max-width: 780px;
-
-    padding: 60px 30px;
-
+    width: min(1100px, 90%);
+    margin: 0 auto;
     color: var(--blanco);
-
-    animation: aparecer 1s ease;
+    max-width: 720px;
 }
 
-
-.hero-etiqueta {
+.etiqueta {
     display: inline-block;
-
-    background-color: rgba(255, 255, 255, 0.18);
-
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--verde-oscuro);
     padding: 8px 18px;
-
     border-radius: 30px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
+    font-weight: 700;
     margin-bottom: 20px;
-
-    backdrop-filter: blur(5px);
 }
-
 
 .hero h1 {
-    font-size: clamp(42px, 7vw, 72px);
-
-    line-height: 1.05;
-
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.08;
     margin-bottom: 25px;
-
     font-weight: 800;
 }
 
-
 .hero h1 span {
-    color: #b9eee6;
-
     display: block;
+    color: #bcebe4;
 }
-
 
 .hero p {
+    font-size: 20px;
     max-width: 650px;
-
-    margin: 0 auto 35px;
-
-    font-size: 19px;
-
-    line-height: 1.7;
-
-    color: rgba(255, 255, 255, 0.94);
+    margin-bottom: 30px;
 }
 
-
-.hero-botones {
+.botones {
     display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
     gap: 15px;
-
     flex-wrap: wrap;
 }
 
-
-/* =========================================================
-   BOTONES
-========================================================= */
-
 .boton {
     display: inline-block;
-
-    padding: 13px 27px;
-
+    padding: 14px 28px;
     border-radius: 30px;
-
-    font-size: 15px;
-
     font-weight: 700;
-
-    transition: all 0.3s ease;
-
-    cursor: pointer;
+    transition: 0.3s ease;
+    border: 2px solid transparent;
 }
-
 
 .boton-principal {
     background-color: var(--verde);
-
     color: var(--blanco);
-
-    box-shadow: 0 7px 20px rgba(42, 157, 143, 0.30);
 }
-
 
 .boton-principal:hover {
     background-color: var(--verde-oscuro);
-
-    color: var(--blanco);
-
-    transform: translateY(-3px);
-
-    box-shadow: 0 12px 25px rgba(42, 157, 143, 0.35);
+    transform: translateY(-2px);
 }
-
 
 .boton-secundario {
-    background-color: rgba(255, 255, 255, 0.15);
-
+    background-color: transparent;
     color: var(--blanco);
-
-    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-color: var(--blanco);
 }
-
 
 .boton-secundario:hover {
     background-color: var(--blanco);
-
-    color: var(--verde);
-
-    transform: translateY(-3px);
+    color: var(--azul);
 }
-
 
 .boton-blanco {
     background-color: var(--blanco);
-
-    color: var(--verde);
+    color: var(--verde-oscuro);
 }
-
 
 .boton-blanco:hover {
-    background-color: var(--crema);
-
-    color: var(--verde-oscuro);
-
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 
-/* =========================================================
-   TÍTULOS DE SECCIÓN
-========================================================= */
+/* =========================
+   SECCIONES
+========================= */
 
-.seccion-titulo {
+.seccion {
+    padding: 90px 0;
+}
+
+.titulo-seccion {
+    text-align: center;
     max-width: 750px;
-
     margin: 0 auto 50px;
-
-    text-align: center;
 }
 
-
-.seccion-titulo > span {
-    color: var(--verde);
-
-    font-size: 14px;
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-
-.seccion-titulo h2 {
-    color: var(--azul);
-
-    font-size: clamp(30px, 4vw, 44px);
-
-    line-height: 1.15;
-
-    margin: 12px 0 18px;
-
-    font-weight: 800;
-}
-
-
-.seccion-titulo p {
-    color: var(--gris-texto);
-
-    font-size: 17px;
-
-    max-width: 650px;
-
-    margin: 0 auto;
-}
-
-
-/* =========================================================
-   BIENVENIDA
-========================================================= */
-
-.bienvenida {
-    padding: 90px 30px;
-
-    background-color: var(--crema);
-}
-
-
-.beneficios {
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 25px;
-}
-
-
-.beneficio {
-    background-color: var(--blanco);
-
-    padding: 35px 28px;
-
-    text-align: center;
-
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra);
-
-    transition: all 0.3s ease;
-
-    border: 1px solid rgba(42, 157, 143, 0.08);
-}
-
-
-.beneficio:hover {
-    transform: translateY(-8px);
-
-    box-shadow: var(--sombra-hover);
-}
-
-
-.icono {
-    width: 70px;
-
-    height: 70px;
-
-    margin: 0 auto 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background-color: #e7f6f3;
-
-    border-radius: 50%;
-
-    font-size: 32px;
-}
-
-
-.beneficio h3 {
-    color: var(--azul);
-
-    font-size: 20px;
-
-    margin-bottom: 12px;
-}
-
-
-.beneficio p {
-    color: var(--gris-texto);
-
-    font-size: 15px;
-}
-
-
-/* =========================================================
-   PROFESIONALES
-========================================================= */
-
-.profesionales {
-    padding: 95px 30px;
-
-    background-color: var(--gris);
-}
-
-
-.tarjetas-profesionales {
-    max-width: 1150px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 30px;
-}
-
-
-.tarjeta-profesional {
-    background-color: var(--blanco);
-
-    border-radius: var(--radio);
-
-    overflow: hidden;
-
-    box-shadow: var(--sombra);
-
-    transition: all 0.35s ease;
-}
-
-
-.tarjeta-profesional:hover {
-    transform: translateY(-10px);
-
-    box-shadow: var(--sombra-hover);
-}
-
-
-.foto-profesional {
-    width: 100%;
-
-    height: 280px;
-
-    overflow: hidden;
-
-    background-color: var(--crema-oscuro);
-}
-
-
-.foto-profesional img {
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: transform 0.5s ease;
-}
-
-
-.tarjeta-profesional:hover .foto-profesional img {
-    transform: scale(1.05);
-}
-
-
-.info-profesional {
-    padding: 25px;
-}
-
-
-.especialidad {
+.titulo-seccion > span {
     display: inline-block;
-
     color: var(--verde);
-
-    background-color: #e7f6f3;
-
-    padding: 5px 11px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     margin-bottom: 12px;
 }
 
-
-.info-profesional h3 {
-    color: var(--azul);
-
-    font-size: 22px;
-
-    margin-bottom: 8px;
-}
-
-
-.info-profesional p {
-    color: var(--gris-texto);
-
-    font-size: 14px;
-
+.titulo-seccion h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
     margin-bottom: 18px;
 }
 
-
-.precio {
-    border-top: 1px solid #e7eeee;
-
-    padding-top: 15px;
-
+.titulo-seccion p {
     color: var(--gris-texto);
-
-    font-size: 14px;
-}
-
-
-.precio strong {
-    color: var(--verde);
-
     font-size: 18px;
 }
 
 
-/* =========================================================
-   SECCIÓN MASCOTAS
-========================================================= */
+/* =========================
+   BENEFICIOS
+========================= */
 
-.mascotas {
-    max-width: 1200px;
+.beneficios {
+    background-color: var(--crema);
+}
 
-    margin: 0 auto;
-
-    padding: 100px 30px;
-
+.beneficios-grid {
     display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    align-items: center;
-
-    gap: 70px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-
-.mascotas-imagen {
-    border-radius: 30px;
-
-    overflow: hidden;
-
-    box-shadow: var(--sombra);
-
-    position: relative;
+.beneficio {
+    background-color: var(--blanco);
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(38, 70, 83, 0.08);
+    transition: 0.3s ease;
 }
 
-
-.mascotas-imagen::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    border: 8px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 30px;
-
-    pointer-events: none;
+.beneficio:hover {
+    transform: translateY(-6px);
 }
 
-
-.mascotas-imagen img {
-    width: 100%;
-
-    height: 480px;
-
-    object-fit: cover;
-
-    transition: transform 0.5s ease;
-}
-
-
-.mascotas-imagen:hover img {
-    transform: scale(1.04);
-}
-
-
-.mascotas-contenido > span {
-    color: var(--verde);
-
-    font-size: 14px;
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-
-.mascotas-contenido h2 {
-    color: var(--azul);
-
-    font-size: clamp(30px, 4vw, 45px);
-
-    line-height: 1.15;
-
-    margin: 15px 0 20px;
-}
-
-
-.mascotas-contenido p {
-    color: var(--gris-texto);
-
-    font-size: 17px;
-
-    margin-bottom: 30px;
-}
-
-
-/* =========================================================
-   LLAMADO A LA ACCIÓN
-========================================================= */
-
-.llamado {
-    max-width: 1150px;
-
-    margin: 20px auto 90px;
-
-    padding: 55px 60px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--verde),
-            var(--verde-oscuro)
-        );
-
-    border-radius: 30px;
+.icono {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background-color: #e5f6f3;
 
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
+    justify-content: center;
 
-    gap: 30px;
-
-    color: var(--blanco);
-
-    box-shadow: 0 15px 40px rgba(42, 157, 143, 0.20);
+    font-size: 35px;
 }
 
-
-.llamado h2 {
-    font-size: 32px;
-
-    margin-bottom: 8px;
-}
-
-
-.llamado p {
-    color: rgba(255, 255, 255, 0.90);
-
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-    background-color: var(--azul);
-
-    color: var(--blanco);
-}
-
-
-.footer-contenido {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 60px 30px;
-
-    display: grid;
-
-    grid-template-columns: 1.5fr 1fr 1.3fr;
-
-    gap: 50px;
-}
-
-
-.footer h3 {
+.beneficio h3 {
     font-size: 22px;
-
     margin-bottom: 12px;
 }
 
-
-.footer h4 {
-    font-size: 16px;
-
-    margin-bottom: 18px;
-
-    color: var(--verde-claro);
+.beneficio p {
+    color: var(--gris-texto);
 }
 
 
+/* =========================
+   PROFESIONALES
+========================= */
+
+.equipo {
+    background-color: var(--gris);
+}
+
+.profesionales-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.profesional {
+    background-color: var(--blanco);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(38, 70, 83, 0.08);
+    transition: 0.3s ease;
+}
+
+.profesional:hover {
+    transform: translateY(-6px);
+}
+
+.profesional img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.profesional-contenido {
+    padding: 25px;
+}
+
+.especialidad {
+    display: inline-block;
+    background-color: #e4f6f3;
+    color: var(--verde-oscuro);
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.profesional h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.profesional p {
+    color: var(--gris-texto);
+}
+
+
+/* =========================
+   MASCOTAS
+========================= */
+
+.mascotas {
+    background-color: var(--crema);
+}
+
+.mascotas-contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.mascotas-imagen img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.12);
+}
+
+.mascotas-texto .etiqueta {
+    background-color: #e4f6f3;
+    color: var(--verde-oscuro);
+}
+
+.mascotas-texto h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.mascotas-texto p {
+    color: var(--gris-texto);
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    background-color: var(--verde);
+    color: var(--blanco);
+    text-align: center;
+    padding: 80px 0;
+}
+
+.cta h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 10px;
+}
+
+.cta p {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background-color: var(--azul);
+    color: var(--blanco);
+}
+
+.footer-contenido {
+    padding: 55px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.footer h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.footer h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
 .footer p {
-    color: rgba(255, 255, 255, 0.72);
-
-    font-size: 14px;
-
+    color: #d9e4e6;
     margin-bottom: 8px;
 }
 
-
-.footer-links {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-}
-
-
-.footer-links a {
-    color: rgba(255, 255, 255, 0.72);
-
-    font-size: 14px;
-
-    margin-bottom: 9px;
-
-    transition: 0.3s;
-}
-
-
-.footer-links a:hover {
-    color: var(--verde-claro);
-
-    padding-left: 5px;
-}
-
-
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     text-align: center;
-
-    padding: 20px 30px;
+    padding: 20px;
 }
-
 
 .footer-bottom p {
     margin: 0;
-
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
-/* =========================================================
-   ANIMACIÓN
-========================================================= */
-
-@keyframes aparecer {
-
-    from {
-        opacity: 0;
-
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE - TABLETS
-========================================================= */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 900px) {
 
-    .navbar {
-        padding: 16px 20px;
-    }
-
-
-    .logo {
-        font-size: 20px;
-    }
-
-
-    .beneficios {
-        grid-template-columns: 1fr;
-    }
-
-
-    .tarjetas-profesionales {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-
-    .mascotas {
-        grid-template-columns: 1fr;
-
-        gap: 45px;
-    }
-
-
-    .mascotas-imagen img {
-        height: 400px;
-    }
-
-
-    .llamado {
-        margin-left: 25px;
-
-        margin-right: 25px;
-
-        padding: 45px 35px;
-    }
-
-
-    .footer-contenido {
+    .beneficios-grid,
+    .profesionales-grid {
         grid-template-columns: 1fr 1fr;
     }
 
+    .mascotas-contenedor {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero {
+        min-height: 580px;
+    }
 }
 
 
-/* =========================================================
-   RESPONSIVE - CELULARES
-========================================================= */
+@media (max-width: 700px) {
 
-@media (max-width: 650px) {
-
-    .navbar {
+    .nav {
         flex-direction: column;
-
-        gap: 12px;
-
-        padding: 15px;
-    }
-
-
-    .menu {
-        width: 100%;
-
         justify-content: center;
+        padding: 20px 0;
+    }
 
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav nav {
         flex-wrap: wrap;
-
-        gap: 5px;
+        justify-content: center;
     }
 
-
-    .menu a {
-        font-size: 13px;
-
-        padding: 8px 12px;
+    .nav nav a {
+        padding: 9px 13px;
     }
-
 
     .hero {
-        min-height: 560px;
+        min-height: 600px;
+        background-position: center;
     }
-
 
     .hero-contenido {
-        padding: 40px 20px;
-    }
-
-
-    .hero h1 {
-        font-size: 44px;
-    }
-
-
-    .hero p {
-        font-size: 16px;
-    }
-
-
-    .hero-botones {
-        flex-direction: column;
-    }
-
-
-    .hero-botones .boton {
-        width: 100%;
-
-        max-width: 250px;
-
         text-align: center;
     }
 
-
-    .bienvenida {
-        padding: 70px 20px;
+    .hero h1 {
+        font-size: 42px;
     }
 
-
-    .seccion-titulo {
-        margin-bottom: 35px;
+    .hero p {
+        font-size: 17px;
     }
 
-
-    .seccion-titulo h2 {
-        font-size: 32px;
+    .botones {
+        justify-content: center;
     }
 
-
-    .seccion-titulo p {
-        font-size: 15px;
+    .seccion {
+        padding: 65px 0;
     }
 
-
-    .profesionales {
-        padding: 70px 20px;
-    }
-
-
-    .tarjetas-profesionales {
+    .beneficios-grid,
+    .profesionales-grid {
         grid-template-columns: 1fr;
     }
 
-
-    .foto-profesional {
-        height: 300px;
+    .profesional img {
+        height: 280px;
     }
-
-
-    .mascotas {
-        padding: 70px 20px;
-    }
-
 
     .mascotas-imagen img {
         height: 350px;
     }
 
-
-    .mascotas-contenido h2 {
-        font-size: 32px;
-    }
-
-
-    .mascotas-contenido p {
-        font-size: 15px;
-    }
-
-
-    .llamado {
-        flex-direction: column;
-
-        text-align: center;
-
-        margin: 10px 20px 70px;
-
-        padding: 40px 25px;
-    }
-
-
-    .llamado h2 {
-        font-size: 27px;
-    }
-
-
     .footer-contenido {
         grid-template-columns: 1fr;
-
-        gap: 35px;
-
-        padding: 50px 25px;
-    }
-
-
-    .footer-links {
-        align-items: center;
-    }
-
-
-    .footer-marca,
-    .footer-contacto {
+        gap: 30px;
         text-align: center;
     }
-
-}
-
-
-/* =========================================================
-   PANTALLAS MUY PEQUEÑAS
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .logo {
-        font-size: 18px;
-    }
-
-
-    .menu a {
-        font-size: 12px;
-
-        padding: 7px 9px;
-    }
-
-
-    .hero h1 {
-        font-size: 37px;
-    }
-
-
-    .hero-etiqueta {
-        font-size: 12px;
-    }
-
-
-    .hero p {
-        font-size: 15px;
-    }
-
-
-    .boton {
-        font-size: 14px;
-
-        padding: 12px 22px;
-    }
-
 }
