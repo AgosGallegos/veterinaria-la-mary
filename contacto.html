@@ -1,155 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Veterinaria La Mary</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 
-<body>
+<body class="pagina-contacto">
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <header>
-        <nav class="navbar">
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="contenedor nav">
 
-            <div class="logo">
+            <a href="index.html" class="logo">
                 🐾 Veterinaria La Mary
-            </div>
+            </a>
 
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="institucional.html">Institucional</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="institucional.html">Institucional</a>
+                <a href="contacto.html" class="activo">Contacto</a>
+            </nav>
 
-        </nav>
+        </div>
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
+    <!-- CONTENIDO -->
+    <main class="pagina-contenido">
 
-        <section class="pagina-titulo">
-
+        <div class="titulo-pagina">
             <h1>Contacto</h1>
-
-            <p>
-                Estamos para ayudarte.
-            </p>
-
-        </section>
+            <p>Estamos para ayudarte.</p>
+        </div>
 
 
-        <section class="contacto">
+        <section class="contacto-grid">
 
-            <!-- INFORMACIÓN DE CONTACTO -->
-            <div class="informacion-contacto">
+            <!-- INFORMACIÓN -->
+            <div class="tarjeta-contacto">
 
                 <h2>Encontranos</h2>
 
-                <div class="dato">
+                <div class="dato-contacto">
 
-                    <span>📍</span>
+                    <div class="icono-contacto">📍</div>
 
                     <div>
                         <h3>Dirección</h3>
-                        <p>Av. Ejemplo 1234, Paraná, Entre Ríos</p>
+                        <p>
+                            Av. Ejemplo 1234, Paraná, Entre Ríos
+                        </p>
                     </div>
 
                 </div>
 
 
-                <div class="dato">
+                <div class="dato-contacto">
 
-                    <span>📞</span>
+                    <div class="icono-contacto">📞</div>
 
                     <div>
                         <h3>Teléfono</h3>
-                        <p>(0343) 123-4567</p>
+                        <p>
+                            (0343) 123-4567
+                        </p>
                     </div>
 
                 </div>
 
 
-                <div class="dato">
+                <div class="dato-contacto">
 
-                    <span>✉️</span>
+                    <div class="icono-contacto">✉️</div>
 
                     <div>
                         <h3>Email</h3>
-                        <p>info@veterinarialamary.com</p>
+                        <p>
+                            info@veterinarialamary.com
+                        </p>
                     </div>
 
                 </div>
 
 
-                <div class="dato">
+                <div class="dato-contacto">
 
-                    <span>🕐</span>
+                    <div class="icono-contacto">🕐</div>
 
                     <div>
                         <h3>Horarios</h3>
-                        <p>Lunes a viernes: 8:00 a 19:00 hs.</p>
-                        <p>Sábados: 9:00 a 13:00 hs.</p>
+                        <p>
+                            Lunes a viernes: 8:00 a 19:00 hs.
+                        </p>
+
+                        <p>
+                            Sábados: 9:00 a 13:00 hs.
+                        </p>
                     </div>
 
+                </div>
+
+
+                <div class="frase-contacto">
+                    🐾
+                    <p>
+                        Cuidamos a quienes forman parte de tu familia.
+                    </p>
+                    ❤️
                 </div>
 
             </div>
 
 
             <!-- FORMULARIO -->
-            <div class="formulario">
+            <div class="tarjeta-contacto">
 
                 <h2>Escribinos</h2>
 
                 <form>
 
-                    <label for="nombre">Nombre</label>
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
 
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Ingresá tu nombre"
-                    >
-
-
-                    <label for="email">Email</label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Ingresá tu email"
-                    >
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Ingresá tu nombre"
+                        >
+                    </div>
 
 
-                    <label for="telefono">Teléfono</label>
+                    <div class="campo">
+                        <label for="email">Email</label>
 
-                    <input
-                        type="tel"
-                        id="telefono"
-                        name="telefono"
-                        placeholder="Ingresá tu teléfono"
-                    >
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Ingresá tu email"
+                        >
+                    </div>
 
 
-                    <label for="mensaje">Mensaje</label>
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
 
-                    <textarea
-                        id="mensaje"
-                        name="mensaje"
-                        rows="5"
-                        placeholder="Escribí tu consulta..."
-                    ></textarea>
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="Ingresá tu teléfono"
+                        >
+                    </div>
+
+
+                    <div class="campo">
+                        <label for="mensaje">Mensaje</label>
+
+                        <textarea
+                            id="mensaje"
+                            name="mensaje"
+                            rows="5"
+                            placeholder="Escribí tu consulta..."
+                        ></textarea>
+                    </div>
 
 
                     <button type="submit">
-                        Enviar mensaje
+                        ✈️ Enviar mensaje
                     </button>
 
                 </form>
@@ -162,44 +184,31 @@
 
 
     <!-- PIE DE PÁGINA -->
-    <footer>
+    <footer class="footer">
 
-        <div class="footer-contenido">
+        <div class="contenedor footer-contenido">
 
             <div>
-
-                <h3>Veterinaria La Mary</h3>
-
-                <p>
-                    Cuidando la salud y el bienestar de tus mascotas.
-                </p>
-
+                <h3>🐾 Veterinaria La Mary</h3>
+                <p>Cuidamos a quienes forman parte de tu familia.</p>
             </div>
 
-
             <div>
-
-                <h3>Contacto</h3>
-
+                <h4>Contacto</h4>
                 <p>📍 Paraná, Entre Ríos</p>
-                <p>📞 (0343) 123-4567</p>
+                <p>📞 0343 - 1234567</p>
                 <p>✉️ info@veterinarialamary.com</p>
-
             </div>
 
         </div>
 
-
-        <div class="copyright">
-
+        <div class="footer-bottom">
             <p>
-                © 2026 Veterinaria La Mary - Todos los derechos reservados.
+                © 2026 Veterinaria La Mary. Todos los derechos reservados.
             </p>
-
         </div>
 
     </footer>
 
 </body>
-
 </html>
