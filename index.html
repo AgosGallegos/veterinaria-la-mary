@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Veterinaria La Mary</title>
 
     <link rel="stylesheet" href="style.css">
@@ -11,52 +12,64 @@
 
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <header>
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+
+    <header class="header">
+
         <nav class="navbar">
 
-            <div class="logo">
+            <a href="index.html" class="logo">
                 🐾 Veterinaria La Mary
+            </a>
+
+            <div class="menu">
+                <a href="index.html" class="activo">Inicio</a>
+                <a href="institucional.html">Institucional</a>
+                <a href="contacto.html">Contacto</a>
             </div>
 
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="institucional.html">Institucional</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-
         </nav>
+
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- =========================
+         PORTADA PRINCIPAL
+    ========================== -->
+
     <main>
 
-        <!-- PORTADA -->
         <section class="hero">
 
-            <div class="hero-text">
+            <div class="hero-contenido">
 
-                <h1>Veterinaria La Mary</h1>
+                <span class="hero-etiqueta">
+                    🐾 Atención veterinaria
+                </span>
 
-                <h2>Cuidamos a quienes más querés</h2>
+                <h1>
+                    Cuidamos a quienes
+                    <span>más querés</span>
+                </h1>
 
                 <p>
-                    Brindamos atención veterinaria profesional y personalizada
-                    para cuidar la salud y el bienestar de tus mascotas.
+                    En Veterinaria La Mary nos dedicamos al cuidado
+                    y bienestar de tus mascotas con profesionalismo,
+                    compromiso y mucho amor.
                 </p>
 
-                <a href="contacto.html" class="boton">
-                    Contactanos
-                </a>
+                <div class="hero-botones">
 
-            </div>
+                    <a href="contacto.html" class="boton boton-principal">
+                        📅 Contactanos
+                    </a>
 
+                    <a href="institucional.html" class="boton boton-secundario">
+                        Conocé más
+                    </a>
 
-            <div class="hero-image">
-
-                <div class="animal-card">
-                    🐶 🐱
                 </div>
 
             </div>
@@ -64,77 +77,213 @@
         </section>
 
 
-        <!-- PROFESIONALES -->
-        <section class="profesionales">
+        <!-- =========================
+             PRESENTACIÓN
+        ========================== -->
 
-            <h2>Nuestros profesionales</h2>
+        <section class="bienvenida">
 
-            <p class="descripcion">
-                Conocé a nuestro equipo de profesionales.
-            </p>
+            <div class="seccion-titulo">
+
+                <span>💚 Bienvenidos</span>
+
+                <h2>
+                    Todo el cuidado que tu mascota necesita
+                </h2>
+
+                <p>
+                    Trabajamos para brindar una atención cercana,
+                    profesional y personalizada para cada mascota.
+                </p>
+
+            </div>
 
 
-            <div class="cards">
+            <div class="beneficios">
 
-                <!-- PROFESIONAL 1 -->
-                <article class="card">
+                <div class="beneficio">
 
-                    <div class="icono-profesional">
-                        👩‍⚕️
+                    <div class="icono">
+                        🩺
                     </div>
 
-                    <h3>Dra. María López</h3>
+                    <h3>
+                        Atención profesional
+                    </h3>
 
                     <p>
-                        <strong>Especialidad:</strong>
-                        Clínica general
+                        Profesionales capacitados para cuidar
+                        la salud de tu mascota.
                     </p>
 
-                    <p class="precio">
-                        Consulta: $15.000
+                </div>
+
+
+                <div class="beneficio">
+
+                    <div class="icono">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Mucho cariño
+                    </h3>
+
+                    <p>
+                        Tratamos a cada mascota con dedicación,
+                        respeto y amor.
                     </p>
+
+                </div>
+
+
+                <div class="beneficio">
+
+                    <div class="icono">
+                        🐾
+                    </div>
+
+                    <h3>
+                        Atención personalizada
+                    </h3>
+
+                    <p>
+                        Cada mascota es única y merece
+                        un cuidado especial.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROFESIONALES
+        ========================== -->
+
+        <section class="profesionales">
+
+            <div class="seccion-titulo">
+
+                <span>👩‍⚕️ Nuestro equipo</span>
+
+                <h2>
+                    Profesionales que cuidan a tu mascota
+                </h2>
+
+                <p>
+                    Conocé a algunos de los profesionales
+                    que forman parte de Veterinaria La Mary.
+                </p>
+
+            </div>
+
+
+            <div class="tarjetas-profesionales">
+
+
+                <!-- PROFESIONAL 1 -->
+
+                <article class="tarjeta-profesional">
+
+                    <div class="foto-profesional">
+                        <img
+                            src="img/veterinario1.jpg"
+                            alt="Profesional veterinario"
+                        >
+                    </div>
+
+                    <div class="info-profesional">
+
+                        <span class="especialidad">
+                            Medicina veterinaria
+                        </span>
+
+                        <h3>
+                            Dra. María López
+                        </h3>
+
+                        <p>
+                            Atención clínica para perros y gatos.
+                        </p>
+
+                        <div class="precio">
+                            Consulta: <strong>$15.000</strong>
+                        </div>
+
+                    </div>
 
                 </article>
 
 
                 <!-- PROFESIONAL 2 -->
-                <article class="card">
 
-                    <div class="icono-profesional">
-                        👨‍⚕️
+                <article class="tarjeta-profesional">
+
+                    <div class="foto-profesional">
+                        <img
+                            src="img/veterinario2.jpg"
+                            alt="Profesional veterinaria"
+                        >
                     </div>
 
-                    <h3>Dr. Juan Pérez</h3>
+                    <div class="info-profesional">
 
-                    <p>
-                        <strong>Especialidad:</strong>
-                        Cirugía veterinaria
-                    </p>
+                        <span class="especialidad">
+                            Medicina preventiva
+                        </span>
 
-                    <p class="precio">
-                        Consulta: $18.000
-                    </p>
+                        <h3>
+                            Dra. Sofía Martínez
+                        </h3>
+
+                        <p>
+                            Controles, vacunación y prevención.
+                        </p>
+
+                        <div class="precio">
+                            Consulta: <strong>$15.000</strong>
+                        </div>
+
+                    </div>
 
                 </article>
 
 
                 <!-- PROFESIONAL 3 -->
-                <article class="card">
 
-                    <div class="icono-profesional">
-                        👩‍⚕️
+                <article class="tarjeta-profesional">
+
+                    <div class="foto-profesional">
+
+                        <img
+                            src="img/veterinario3.jpg"
+                            alt="Profesional veterinario"
+                        >
+
                     </div>
 
-                    <h3>Dra. Carla Gómez</h3>
+                    <div class="info-profesional">
 
-                    <p>
-                        <strong>Especialidad:</strong>
-                        Dermatología
-                    </p>
+                        <span class="especialidad">
+                            Clínica de pequeños animales
+                        </span>
 
-                    <p class="precio">
-                        Consulta: $17.000
-                    </p>
+                        <h3>
+                            Dr. Juan Pérez
+                        </h3>
+
+                        <p>
+                            Atención integral para perros y gatos.
+                        </p>
+
+                        <div class="precio">
+                            Consulta: <strong>$15.000</strong>
+                        </div>
+
+                    </div>
 
                 </article>
 
@@ -142,42 +291,150 @@
 
         </section>
 
-    </main>
+
+        <!-- =========================
+             SECCIÓN MASCOTAS
+        ========================== -->
+
+        <section class="mascotas">
+
+            <div class="mascotas-imagen">
+
+                <img
+                    src="img/mascotas.jpg"
+                    alt="Perro y gato"
+                >
+
+            </div>
 
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
+            <div class="mascotas-contenido">
 
-        <div class="footer-contenido">
+                <span>
+                    🐶 🐱 Amor por los animales
+                </span>
+
+                <h2>
+                    Porque ellos también son parte de la familia
+                </h2>
+
+                <p>
+                    Sabemos lo importantes que son nuestras mascotas
+                    en nuestras vidas. Por eso buscamos brindarles
+                    atención de calidad y acompañarlos en cada etapa.
+                </p>
+
+                <a
+                    href="institucional.html"
+                    class="boton boton-principal"
+                >
+                    Conocé nuestra veterinaria
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LLAMADO A LA ACCIÓN
+        ========================== -->
+
+        <section class="llamado">
 
             <div>
 
-                <h3>Veterinaria La Mary</h3>
+                <h2>
+                    ¿Necesitás una consulta?
+                </h2>
 
                 <p>
-                    Cuidando la salud y el bienestar de tus mascotas.
+                    Estamos para ayudarte y cuidar a tu mascota.
+                </p>
+
+            </div>
+
+            <a
+                href="contacto.html"
+                class="boton boton-blanco"
+            >
+                Contactanos
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-contenido">
+
+            <div class="footer-marca">
+
+                <h3>
+                    🐾 Veterinaria La Mary
+                </h3>
+
+                <p>
+                    Cuidamos a quienes más querés.
                 </p>
 
             </div>
 
 
-            <div>
+            <div class="footer-links">
 
-                <h3>Contacto</h3>
+                <h4>
+                    Navegación
+                </h4>
 
-                <p>📍 Paraná, Entre Ríos</p>
-                <p>📞 (0343) 123-4567</p>
-                <p>✉️ info@veterinarialamary.com</p>
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="institucional.html">
+                    Institucional
+                </a>
+
+                <a href="contacto.html">
+                    Contacto
+                </a>
+
+            </div>
+
+
+            <div class="footer-contacto">
+
+                <h4>
+                    Contacto
+                </h4>
+
+                <p>
+                    📍 Paraná, Entre Ríos
+                </p>
+
+                <p>
+                    📞 (0343) 000-0000
+                </p>
+
+                <p>
+                    ✉️ contacto@veterinarialamary.com
+                </p>
 
             </div>
 
         </div>
 
 
-        <div class="copyright">
+        <div class="footer-bottom">
 
             <p>
-                © 2026 Veterinaria La Mary - Todos los derechos reservados.
+                © 2026 Veterinaria La Mary — Todos los derechos reservados.
             </p>
 
         </div>
