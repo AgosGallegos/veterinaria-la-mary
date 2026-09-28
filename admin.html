@@ -7,14 +7,9 @@
 
     <title>Administración | Veterinaria La Mary</title>
 
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- CSS propio -->
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <link rel="stylesheet" href="paginas.css">
 </head>
 
@@ -24,317 +19,324 @@
          NAVBAR
     ========================== -->
 
-    <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
 
-        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="index.html">
+                Veterinaria La Mary
+            </a>
 
-            <div class="container-fluid">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <a class="navbar-brand" href="index.html">
-                    🐾 Veterinaria La Mary
-                </a>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
 
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal"
-                    aria-expanded="false"
-                    aria-label="Abrir menú"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <ul class="navbar-nav ms-auto">
 
-                <div
-                    class="collapse navbar-collapse"
-                    id="menuPrincipal"
-                >
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Inicio
+                        </a>
+                    </li>
 
-                    <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="institucional.html">
+                            Institucional
+                        </a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">
-                                Inicio
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">
+                            Contacto
+                        </a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="institucional.html">
-                                Institucional
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin.html">
+                            Administración
+                        </a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">
-                                Contacto
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" href="admin.html">
-                                Administración
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
+                </ul>
 
             </div>
-
-        </nav>
-
-    </header>
+        </div>
+    </nav>
 
 
     <!-- =========================
          CONTENIDO PRINCIPAL
     ========================== -->
 
-    <main class="container-fluid py-5">
+    <main class="container py-5">
 
-        <div class="container">
+        <div class="text-center mb-5">
 
-            <!-- TÍTULO -->
+            <h1>
+                Panel de Administración
+            </h1>
 
-            <section class="mb-5 text-center">
-
-                <h1>Panel de administración</h1>
-
-                <p>
-                    Gestioná veterinarios, mascotas, turnos e historias clínicas.
-                </p>
-
-            </section>
-
-
-            <!-- =========================
-                 VETERINARIOS
-            ========================== -->
-
-            <section class="mb-5">
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-                    <div>
-                        <h2>Veterinarios</h2>
-
-                        <p>
-                            Administración de profesionales.
-                        </p>
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="prepararNuevoVeterinario()"
-                    >
-                        + Nuevo veterinario
-                    </button>
-
-                </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-striped table-hover align-middle">
-
-                        <thead class="table-dark">
-
-                            <tr>
-                                <th>Matrícula</th>
-                                <th>Nombre</th>
-                                <th>Especialización</th>
-                                <th>Valor consulta</th>
-                                <th>Acciones</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tablaVeterinarios"></tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 MASCOTAS
-            ========================== -->
-
-            <section class="mb-5">
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-                    <div>
-                        <h2>Mascotas</h2>
-
-                        <p>
-                            Administración de mascotas.
-                        </p>
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="prepararNuevaMascota()"
-                    >
-                        + Nueva mascota
-                    </button>
-
-                </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-striped table-hover align-middle">
-
-                        <thead class="table-dark">
-
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Dueño</th>
-                                <th>Color</th>
-                                <th>Edad</th>
-                                <th>Peso</th>
-                                <th>Imagen</th>
-                                <th>Acciones</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tablaMascotas"></tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 TURNOS
-            ========================== -->
-
-            <section class="mb-5">
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-                    <div>
-                        <h2>Turnos</h2>
-
-                        <p>
-                            Gestión de turnos para las mascotas.
-                        </p>
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="prepararNuevoTurno()"
-                    >
-                        + Nuevo turno
-                    </button>
-
-                </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-striped table-hover align-middle">
-
-                        <thead class="table-dark">
-
-                            <tr>
-                                <th>Fecha y hora</th>
-                                <th>Mascota</th>
-                                <th>Veterinario</th>
-                                <th>Acciones</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tablaTurnos"></tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 HISTORIA CLÍNICA
-            ========================== -->
-
-            <section class="mb-5">
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-
-                    <div>
-
-                        <h2>Historia Clínica</h2>
-
-                        <p>
-                            Registro y consulta de historias clínicas.
-                        </p>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="prepararNuevaHistoria()"
-                    >
-                        + Nueva historia
-                    </button>
-
-                </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-striped table-hover align-middle">
-
-                        <thead class="table-dark">
-
-                            <tr>
-                                <th>Fecha y hora</th>
-                                <th>Mascota</th>
-                                <th>Veterinario</th>
-                                <th>Observaciones</th>
-                                <th>Acciones</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tablaHistoriasClinicas"></tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
+            <p>
+                Gestión de la Veterinaria La Mary
+            </p>
 
         </div>
+
+
+        <!-- =====================================================
+             VETERINARIOS
+        ====================================================== -->
+
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
+                <div>
+                    <h2>Veterinarios</h2>
+
+                    <p class="mb-0">
+                        Gestión de profesionales veterinarios.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="prepararNuevoVeterinario()">
+
+                    + Nuevo veterinario
+
+                </button>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Matrícula</th>
+                            <th>Especialización</th>
+                            <th>Valor consulta</th>
+                            <th>Acciones</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaVeterinarios">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MASCOTAS
+        ====================================================== -->
+
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
+                <div>
+
+                    <h2>Mascotas</h2>
+
+                    <p class="mb-0">
+                        Gestión de mascotas registradas.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="prepararNuevaMascota()">
+
+                    + Nueva mascota
+
+                </button>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Nombre</th>
+                            <th>Dueño</th>
+                            <th>Color</th>
+                            <th>Edad</th>
+                            <th>Peso</th>
+                            <th>Imagen</th>
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaMascotas">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TURNOS
+        ====================================================== -->
+
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
+                <div>
+
+                    <h2>Turnos</h2>
+
+                    <p class="mb-0">
+                        Gestión de turnos de la veterinaria.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="prepararNuevoTurno()">
+
+                    + Nuevo turno
+
+                </button>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Fecha y hora</th>
+                            <th>Mascota</th>
+                            <th>Veterinario</th>
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaTurnos">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HISTORIA CLÍNICA
+        ====================================================== -->
+
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
+                <div>
+
+                    <h2>Historia Clínica</h2>
+
+                    <p class="mb-0">
+                        Registro y consulta de historias clínicas.
+                    </p>
+
+                </div>
+
+
+                <!-- IMPORTANTE:
+                     Este botón abre directamente el modal -->
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalHistoria"
+                    onclick="prepararNuevaHistoria()">
+
+                    + Nueva historia clínica
+
+                </button>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Fecha y hora</th>
+                            <th>Mascota</th>
+                            <th>Veterinario</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaHistoriasClinicas">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
 
     </main>
 
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          MODAL VETERINARIO
-    =================================================== -->
+    ====================================================== -->
 
     <div
         class="modal fade"
         id="modalVeterinario"
         tabindex="-1"
-        aria-hidden="true"
-    >
+        aria-hidden="true">
 
         <div class="modal-dialog">
 
@@ -344,16 +346,18 @@
 
                     <h5
                         class="modal-title"
-                        id="tituloModalVeterinario"
-                    >
+                        id="tituloModalVeterinario">
+
                         Nuevo veterinario
+
                     </h5>
 
                     <button
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
-                    ></button>
+                        aria-label="Cerrar">
+                    </button>
 
                 </div>
 
@@ -364,44 +368,24 @@
 
                         <input
                             type="hidden"
-                            id="idVeterinario"
-                        >
-
-
-                        <div class="mb-3">
-
-                            <label
-                                for="matricula"
-                                class="form-label"
-                            >
-                                Matrícula
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="matricula"
-                                required
-                            >
-
-                        </div>
+                            id="idVeterinario">
 
 
                         <div class="mb-3">
 
                             <label
                                 for="nombreVeterinario"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Nombre
+
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
                                 id="nombreVeterinario"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -409,18 +393,18 @@
                         <div class="mb-3">
 
                             <label
-                                for="especializacion"
-                                class="form-label"
-                            >
-                                Especialización
+                                for="matriculaVeterinario"
+                                class="form-label">
+
+                                Matrícula
+
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
-                                id="especializacion"
-                                required
-                            >
+                                id="matriculaVeterinario"
+                                required>
 
                         </div>
 
@@ -428,19 +412,37 @@
                         <div class="mb-3">
 
                             <label
-                                for="valorConsulta"
-                                class="form-label"
-                            >
+                                for="especializacionVeterinario"
+                                class="form-label">
+
+                                Especialización
+
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="especializacionVeterinario"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="valorConsultaVeterinario"
+                                class="form-label">
+
                                 Valor de consulta
+
                             </label>
 
                             <input
                                 type="number"
                                 class="form-control"
-                                id="valorConsulta"
-                                min="0"
-                                required
-                            >
+                                id="valorConsultaVeterinario"
+                                required>
 
                         </div>
 
@@ -452,16 +454,18 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
+                            data-bs-dismiss="modal">
+
                             Cancelar
+
                         </button>
 
                         <button
                             type="submit"
-                            class="btn btn-primary"
-                        >
-                            Guardar veterinario
+                            class="btn btn-primary">
+
+                            Guardar
+
                         </button>
 
                     </div>
@@ -475,16 +479,16 @@
     </div>
 
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          MODAL MASCOTA
-    =================================================== -->
+    ====================================================== -->
 
     <div
         class="modal fade"
         id="modalMascota"
         tabindex="-1"
-        aria-hidden="true"
-    >
+        aria-hidden="true">
 
         <div class="modal-dialog">
 
@@ -494,16 +498,18 @@
 
                     <h5
                         class="modal-title"
-                        id="tituloModalMascota"
-                    >
+                        id="tituloModalMascota">
+
                         Nueva mascota
+
                     </h5>
 
                     <button
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
-                    ></button>
+                        aria-label="Cerrar">
+                    </button>
 
                 </div>
 
@@ -514,25 +520,24 @@
 
                         <input
                             type="hidden"
-                            id="idMascota"
-                        >
+                            id="idMascota">
 
 
                         <div class="mb-3">
 
                             <label
                                 for="nombreMascota"
-                                class="form-label"
-                            >
-                                Nombre
+                                class="form-label">
+
+                                Nombre de la mascota
+
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
                                 id="nombreMascota"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -541,17 +546,17 @@
 
                             <label
                                 for="nombreDuenio"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Nombre del dueño
+
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
                                 id="nombreDuenio"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -560,17 +565,17 @@
 
                             <label
                                 for="colorMascota"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Color
+
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
                                 id="colorMascota"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -579,9 +584,10 @@
 
                             <label
                                 for="edadMascota"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Edad
+
                             </label>
 
                             <input
@@ -589,8 +595,7 @@
                                 class="form-control"
                                 id="edadMascota"
                                 min="0"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -599,19 +604,19 @@
 
                             <label
                                 for="pesoMascota"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Peso
+
                             </label>
 
                             <input
                                 type="number"
                                 class="form-control"
                                 id="pesoMascota"
-                                min="0"
                                 step="0.1"
-                                required
-                            >
+                                min="0"
+                                required>
 
                         </div>
 
@@ -620,17 +625,17 @@
 
                             <label
                                 for="imagenMascota"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Imagen
+
                             </label>
 
                             <input
                                 type="file"
                                 class="form-control"
                                 id="imagenMascota"
-                                accept="image/*"
-                            >
+                                accept="image/*">
 
                         </div>
 
@@ -640,14 +645,14 @@
                             <input
                                 class="form-check-input"
                                 type="checkbox"
-                                id="eliminarImagen"
-                            >
+                                id="eliminarImagen">
 
                             <label
                                 class="form-check-label"
-                                for="eliminarImagen"
-                            >
+                                for="eliminarImagen">
+
                                 Eliminar imagen actual
+
                             </label>
 
                         </div>
@@ -660,16 +665,18 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
+                            data-bs-dismiss="modal">
+
                             Cancelar
+
                         </button>
 
                         <button
                             type="submit"
-                            class="btn btn-primary"
-                        >
-                            Guardar mascota
+                            class="btn btn-primary">
+
+                            Guardar
+
                         </button>
 
                     </div>
@@ -683,16 +690,16 @@
     </div>
 
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          MODAL TURNO
-    =================================================== -->
+    ====================================================== -->
 
     <div
         class="modal fade"
         id="modalTurno"
         tabindex="-1"
-        aria-hidden="true"
-    >
+        aria-hidden="true">
 
         <div class="modal-dialog">
 
@@ -702,16 +709,18 @@
 
                     <h5
                         class="modal-title"
-                        id="tituloModalTurno"
-                    >
+                        id="tituloModalTurno">
+
                         Nuevo turno
+
                     </h5>
 
                     <button
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
-                    ></button>
+                        aria-label="Cerrar">
+                    </button>
 
                 </div>
 
@@ -722,25 +731,24 @@
 
                         <input
                             type="hidden"
-                            id="idTurno"
-                        >
+                            id="idTurno">
 
 
                         <div class="mb-3">
 
                             <label
                                 for="fechaHoraTurno"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Fecha y hora
+
                             </label>
 
                             <input
                                 type="datetime-local"
                                 class="form-control"
                                 id="fechaHoraTurno"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -749,19 +757,19 @@
 
                             <label
                                 for="mascotaTurno"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Mascota
+
                             </label>
 
                             <select
                                 class="form-select"
                                 id="mascotaTurno"
-                                required
-                            >
+                                required>
 
                                 <option value="">
-                                    Seleccioná una mascota
+                                    Seleccionar mascota
                                 </option>
 
                             </select>
@@ -773,19 +781,19 @@
 
                             <label
                                 for="veterinarioTurno"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Veterinario
+
                             </label>
 
                             <select
                                 class="form-select"
                                 id="veterinarioTurno"
-                                required
-                            >
+                                required>
 
                                 <option value="">
-                                    Seleccioná un veterinario
+                                    Seleccionar veterinario
                                 </option>
 
                             </select>
@@ -800,16 +808,18 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
+                            data-bs-dismiss="modal">
+
                             Cancelar
+
                         </button>
 
                         <button
                             type="submit"
-                            class="btn btn-primary"
-                        >
+                            class="btn btn-primary">
+
                             Guardar turno
+
                         </button>
 
                     </div>
@@ -823,35 +833,39 @@
     </div>
 
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          MODAL HISTORIA CLÍNICA
-    =================================================== -->
+    ====================================================== -->
 
     <div
         class="modal fade"
         id="modalHistoria"
         tabindex="-1"
-        aria-hidden="true"
-    >
+        aria-labelledby="tituloModalHistoria"
+        aria-hidden="true">
 
         <div class="modal-dialog modal-lg">
 
             <div class="modal-content">
 
+
                 <div class="modal-header">
 
                     <h5
                         class="modal-title"
-                        id="tituloModalHistoria"
-                    >
+                        id="tituloModalHistoria">
+
                         Nueva historia clínica
+
                     </h5>
 
                     <button
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
-                    ></button>
+                        aria-label="Cerrar">
+                    </button>
 
                 </div>
 
@@ -862,25 +876,24 @@
 
                         <input
                             type="hidden"
-                            id="idHistoriaClinica"
-                        >
+                            id="idHistoriaClinica">
 
 
                         <div class="mb-3">
 
                             <label
                                 for="fechaHoraHistoria"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Fecha y hora
+
                             </label>
 
                             <input
                                 type="datetime-local"
                                 class="form-control"
                                 id="fechaHoraHistoria"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -889,19 +902,19 @@
 
                             <label
                                 for="mascotaHistoria"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Mascota
+
                             </label>
 
                             <select
                                 class="form-select"
                                 id="mascotaHistoria"
-                                required
-                            >
+                                required>
 
                                 <option value="">
-                                    Seleccioná una mascota
+                                    Seleccionar mascota
                                 </option>
 
                             </select>
@@ -913,19 +926,19 @@
 
                             <label
                                 for="veterinarioHistoria"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Veterinario
+
                             </label>
 
                             <select
                                 class="form-select"
                                 id="veterinarioHistoria"
-                                required
-                            >
+                                required>
 
                                 <option value="">
-                                    Seleccioná un veterinario
+                                    Seleccionar veterinario
                                 </option>
 
                             </select>
@@ -937,18 +950,19 @@
 
                             <label
                                 for="observacionesHistoria"
-                                class="form-label"
-                            >
+                                class="form-label">
+
                                 Observaciones
+
                             </label>
 
                             <textarea
                                 class="form-control"
                                 id="observacionesHistoria"
-                                rows="6"
+                                rows="5"
                                 placeholder="Escribí las observaciones de la consulta..."
-                                required
-                            ></textarea>
+                                required>
+                            </textarea>
 
                         </div>
 
@@ -960,16 +974,18 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
+                            data-bs-dismiss="modal">
+
                             Cancelar
+
                         </button>
 
                         <button
                             type="submit"
-                            class="btn btn-primary"
-                        >
-                            Guardar historia
+                            class="btn btn-primary">
+
+                            Guardar historia clínica
+
                         </button>
 
                     </div>
@@ -983,14 +999,34 @@
     </div>
 
 
-    <!-- Bootstrap JavaScript -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="text-center py-4">
+
+        <p class="mb-0">
+            Veterinaria La Mary
+        </p>
+
+        <p class="mb-0">
+            Design & Development Web
+        </p>
+
+    </footer>
 
 
-    <!-- JavaScript propio -->
+
+    <!-- =========================
+         BOOTSTRAP JS
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- =========================
+         NUESTRO JAVASCRIPT
+    ========================== -->
 
     <script src="js/app.js"></script>
 
