@@ -57,7 +57,7 @@ const mascotasIniciales = [
 
 
 // ======================================================
-// INICIALIZACIÓN
+// INICIO
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -65,13 +65,19 @@ document.addEventListener("DOMContentLoaded", function () {
     inicializarDatos();
 
     mostrarVeterinarios();
+
     mostrarMascotas();
+
     mostrarTurnos();
+
     mostrarHistoriasClinicas();
 
     cargarMascotasEnSelect();
+
     cargarVeterinariosEnSelect();
+
     cargarMascotasHistoria();
+
     cargarVeterinariosHistoria();
 
     configurarEventos();
@@ -80,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // ======================================================
-// INICIALIZAR LOCALSTORAGE
+// INICIALIZAR DATOS
 // ======================================================
 
 function inicializarDatos() {
@@ -168,7 +174,7 @@ function obtenerHistoriasClinicas() {
 
 
 // ======================================================
-// CONFIGURAR EVENTOS
+// EVENTOS
 // ======================================================
 
 function configurarEventos() {
@@ -260,49 +266,52 @@ function mostrarVeterinarios() {
     }
 
 
-    tabla.innerHTML = veterinarios.map(function (veterinario) {
+    tabla.innerHTML =
+        veterinarios.map(function (veterinario) {
 
-        return `
-            <tr>
+            return `
+                <tr>
 
-                <td>
-                    ${veterinario.matricula}
-                </td>
+                    <td>
+                        ${veterinario.matricula}
+                    </td>
 
-                <td>
-                    ${veterinario.nombre}
-                </td>
+                    <td>
+                        ${veterinario.nombre}
+                    </td>
 
-                <td>
-                    ${veterinario.especializacion}
-                </td>
+                    <td>
+                        ${veterinario.especializacion}
+                    </td>
 
-                <td>
-                    $${Number(veterinario.valorConsulta).toLocaleString("es-AR")}
-                </td>
+                    <td>
+                        $${Number(
+                            veterinario.valorConsulta
+                        ).toLocaleString("es-AR")}
+                    </td>
 
-                <td>
+                    <td>
 
-                    <button
-                        class="btn btn-warning btn-sm me-1"
-                        onclick="editarVeterinario('${veterinario.idVeterinario}')"
-                    >
-                        Editar
-                    </button>
+                        <button
+                            class="btn btn-warning btn-sm me-1"
+                            onclick="editarVeterinario('${veterinario.idVeterinario}')"
+                        >
+                            Editar
+                        </button>
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        onclick="eliminarVeterinario('${veterinario.idVeterinario}')"
-                    >
-                        Eliminar
-                    </button>
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminarVeterinario('${veterinario.idVeterinario}')"
+                        >
+                            Eliminar
+                        </button>
 
-                </td>
+                    </td>
 
-            </tr>
-        `;
+                </tr>
+            `;
 
-    }).join("");
+        }).join("");
 
 }
 
@@ -313,10 +322,9 @@ function mostrarVeterinarios() {
 
 function prepararNuevoVeterinario() {
 
-    const formulario =
-        document.getElementById("formVeterinario");
-
-    formulario.reset();
+    document.getElementById(
+        "formVeterinario"
+    ).reset();
 
 
     document.getElementById(
@@ -326,17 +334,15 @@ function prepararNuevoVeterinario() {
 
     document.getElementById(
         "tituloModalVeterinario"
-    ).textContent = "Nuevo veterinario";
-
-
-    document.getElementById(
-        "botonGuardarVeterinario"
-    ).textContent = "Guardar veterinario";
+    ).textContent =
+        "Nuevo veterinario";
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalVeterinario")
+            document.getElementById(
+                "modalVeterinario"
+            )
         );
 
     modal.show();
@@ -358,26 +364,36 @@ function guardarVeterinario(evento) {
 
 
     const id =
-        document.getElementById("idVeterinario").value;
+        document.getElementById(
+            "idVeterinario"
+        ).value;
 
 
-    const nuevoVeterinario = {
+    const veterinario = {
 
         idVeterinario:
             id || "vet" + Date.now(),
 
         matricula:
-            document.getElementById("matricula").value,
+            document.getElementById(
+                "matricula"
+            ).value,
 
         nombre:
-            document.getElementById("nombreVeterinario").value,
+            document.getElementById(
+                "nombreVeterinario"
+            ).value,
 
         especializacion:
-            document.getElementById("especializacion").value,
+            document.getElementById(
+                "especializacion"
+            ).value,
 
         valorConsulta:
             Number(
-                document.getElementById("valorConsulta").value
+                document.getElementById(
+                    "valorConsulta"
+                ).value
             )
 
     };
@@ -387,10 +403,10 @@ function guardarVeterinario(evento) {
 
         const indice =
             veterinarios.findIndex(
-                function (veterinario) {
+                function (v) {
 
                     return (
-                        veterinario.idVeterinario === id
+                        v.idVeterinario === id
                     );
 
                 }
@@ -400,14 +416,14 @@ function guardarVeterinario(evento) {
         if (indice !== -1) {
 
             veterinarios[indice] =
-                nuevoVeterinario;
+                veterinario;
 
         }
 
     } else {
 
         veterinarios.push(
-            nuevoVeterinario
+            veterinario
         );
 
     }
@@ -422,12 +438,15 @@ function guardarVeterinario(evento) {
     mostrarVeterinarios();
 
     cargarVeterinariosEnSelect();
+
     cargarVeterinariosHistoria();
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalVeterinario")
+            document.getElementById(
+                "modalVeterinario"
+            )
         );
 
     modal.hide();
@@ -464,42 +483,45 @@ function editarVeterinario(id) {
 
     document.getElementById(
         "idVeterinario"
-    ).value = veterinario.idVeterinario;
+    ).value =
+        veterinario.idVeterinario;
 
 
     document.getElementById(
         "matricula"
-    ).value = veterinario.matricula;
+    ).value =
+        veterinario.matricula;
 
 
     document.getElementById(
         "nombreVeterinario"
-    ).value = veterinario.nombre;
+    ).value =
+        veterinario.nombre;
 
 
     document.getElementById(
         "especializacion"
-    ).value = veterinario.especializacion;
+    ).value =
+        veterinario.especializacion;
 
 
     document.getElementById(
         "valorConsulta"
-    ).value = veterinario.valorConsulta;
+    ).value =
+        veterinario.valorConsulta;
 
 
     document.getElementById(
         "tituloModalVeterinario"
-    ).textContent = "Editar veterinario";
-
-
-    document.getElementById(
-        "botonGuardarVeterinario"
-    ).textContent = "Guardar cambios";
+    ).textContent =
+        "Editar veterinario";
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalVeterinario")
+            document.getElementById(
+                "modalVeterinario"
+            )
         );
 
     modal.show();
@@ -513,14 +535,14 @@ function editarVeterinario(id) {
 
 function eliminarVeterinario(id) {
 
-    const confirmar =
-        confirm(
+    if (
+        !confirm(
             "¿Seguro que querés eliminar este veterinario?"
-        );
+        )
+    ) {
 
-
-    if (!confirmar) {
         return;
+
     }
 
 
@@ -549,6 +571,7 @@ function eliminarVeterinario(id) {
     mostrarVeterinarios();
 
     cargarVeterinariosEnSelect();
+
     cargarVeterinariosHistoria();
 
 }
@@ -587,74 +610,75 @@ function mostrarMascotas() {
     }
 
 
-    tabla.innerHTML = mascotas.map(function (mascota) {
+    tabla.innerHTML =
+        mascotas.map(function (mascota) {
 
-        const imagen =
-            mascota.imagenMascota
-                ? `
-                    <img
-                        src="${mascota.imagenMascota}"
-                        alt="${mascota.nombreMascota}"
-                        style="
-                            width:60px;
-                            height:60px;
-                            object-fit:cover;
-                            border-radius:10px;
-                        "
-                    >
-                `
-                : "Sin imagen";
+            const imagen =
+                mascota.imagenMascota
+                    ? `
+                        <img
+                            src="${mascota.imagenMascota}"
+                            alt="${mascota.nombreMascota}"
+                            style="
+                                width:60px;
+                                height:60px;
+                                object-fit:cover;
+                                border-radius:10px;
+                            "
+                        >
+                    `
+                    : "Sin imagen";
 
 
-        return `
-            <tr>
+            return `
+                <tr>
 
-                <td>
-                    ${mascota.nombreMascota}
-                </td>
+                    <td>
+                        ${mascota.nombreMascota}
+                    </td>
 
-                <td>
-                    ${mascota.nombreDuenio}
-                </td>
+                    <td>
+                        ${mascota.nombreDuenio}
+                    </td>
 
-                <td>
-                    ${mascota.color}
-                </td>
+                    <td>
+                        ${mascota.color}
+                    </td>
 
-                <td>
-                    ${mascota.edad}
-                </td>
+                    <td>
+                        ${mascota.edad}
+                    </td>
 
-                <td>
-                    ${mascota.peso} kg
-                </td>
+                    <td>
+                        ${mascota.peso} kg
+                    </td>
 
-                <td>
-                    ${imagen}
-                </td>
+                    <td>
+                        ${imagen}
+                    </td>
 
-                <td>
+                    <td>
 
-                    <button
-                        class="btn btn-warning btn-sm me-1"
-                        onclick="editarMascota('${mascota.idMascota}')"
-                    >
-                        Editar
-                    </button>
+                        <button
+                            class="btn btn-warning btn-sm me-1"
+                            onclick="editarMascota('${mascota.idMascota}')"
+                        >
+                            Editar
+                        </button>
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        onclick="eliminarMascota('${mascota.idMascota}')"
-                    >
-                        Eliminar
-                    </button>
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminarMascota('${mascota.idMascota}')"
+                        >
+                            Eliminar
+                        </button>
 
-                </td>
+                    </td>
 
-            </tr>
-        `;
+                </tr>
+            `;
 
-    }).join("");
+        }).join("");
 
 }
 
@@ -677,17 +701,15 @@ function prepararNuevaMascota() {
 
     document.getElementById(
         "tituloModalMascota"
-    ).textContent = "Nueva mascota";
-
-
-    document.getElementById(
-        "botonGuardarMascota"
-    ).textContent = "Guardar mascota";
+    ).textContent =
+        "Nueva mascota";
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalMascota")
+            document.getElementById(
+                "modalMascota"
+            )
         );
 
     modal.show();
@@ -709,30 +731,42 @@ function guardarMascota(evento) {
 
 
     const id =
-        document.getElementById("idMascota").value;
+        document.getElementById(
+            "idMascota"
+        ).value;
 
 
     const nombre =
-        document.getElementById("nombreMascota").value;
+        document.getElementById(
+            "nombreMascota"
+        ).value;
 
 
     const duenio =
-        document.getElementById("nombreDuenio").value;
+        document.getElementById(
+            "nombreDuenio"
+        ).value;
 
 
     const color =
-        document.getElementById("colorMascota").value;
+        document.getElementById(
+            "colorMascota"
+        ).value;
 
 
     const edad =
         Number(
-            document.getElementById("edadMascota").value
+            document.getElementById(
+                "edadMascota"
+            ).value
         );
 
 
     const peso =
         Number(
-            document.getElementById("pesoMascota").value
+            document.getElementById(
+                "pesoMascota"
+            ).value
         );
 
 
@@ -842,12 +876,15 @@ function guardarMascota(evento) {
         mostrarMascotas();
 
         cargarMascotasEnSelect();
+
         cargarMascotasHistoria();
 
 
         const modal =
             bootstrap.Modal.getOrCreateInstance(
-                document.getElementById("modalMascota")
+                document.getElementById(
+                    "modalMascota"
+                )
             );
 
         modal.hide();
@@ -923,32 +960,38 @@ function editarMascota(id) {
 
     document.getElementById(
         "idMascota"
-    ).value = mascota.idMascota;
+    ).value =
+        mascota.idMascota;
 
 
     document.getElementById(
         "nombreMascota"
-    ).value = mascota.nombreMascota;
+    ).value =
+        mascota.nombreMascota;
 
 
     document.getElementById(
         "nombreDuenio"
-    ).value = mascota.nombreDuenio;
+    ).value =
+        mascota.nombreDuenio;
 
 
     document.getElementById(
         "colorMascota"
-    ).value = mascota.color;
+    ).value =
+        mascota.color;
 
 
     document.getElementById(
         "edadMascota"
-    ).value = mascota.edad;
+    ).value =
+        mascota.edad;
 
 
     document.getElementById(
         "pesoMascota"
-    ).value = mascota.peso;
+    ).value =
+        mascota.peso;
 
 
     document.getElementById(
@@ -963,17 +1006,15 @@ function editarMascota(id) {
 
     document.getElementById(
         "tituloModalMascota"
-    ).textContent = "Editar mascota";
-
-
-    document.getElementById(
-        "botonGuardarMascota"
-    ).textContent = "Guardar cambios";
+    ).textContent =
+        "Editar mascota";
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalMascota")
+            document.getElementById(
+                "modalMascota"
+            )
         );
 
     modal.show();
@@ -987,14 +1028,14 @@ function editarMascota(id) {
 
 function eliminarMascota(id) {
 
-    const confirmar =
-        confirm(
+    if (
+        !confirm(
             "¿Seguro que querés eliminar esta mascota?"
-        );
+        )
+    ) {
 
-
-    if (!confirmar) {
         return;
+
     }
 
 
@@ -1023,13 +1064,14 @@ function eliminarMascota(id) {
     mostrarMascotas();
 
     cargarMascotasEnSelect();
+
     cargarMascotasHistoria();
 
 }
 
 
 // ======================================================
-// TURNOS
+// SELECTS DE TURNOS
 // ======================================================
 
 function cargarMascotasEnSelect() {
@@ -1147,76 +1189,77 @@ function mostrarTurnos() {
     }
 
 
-    tabla.innerHTML = turnos.map(function (turno) {
+    tabla.innerHTML =
+        turnos.map(function (turno) {
 
-        const mascota =
-            mascotas.find(
-                function (m) {
+            const mascota =
+                mascotas.find(
+                    function (m) {
 
-                    return (
-                        m.idMascota === turno.mascota
-                    );
+                        return (
+                            m.idMascota === turno.mascota
+                        );
 
-                }
-            );
-
-
-        const veterinario =
-            veterinarios.find(
-                function (v) {
-
-                    return (
-                        v.idVeterinario === turno.veterinario
-                    );
-
-                }
-            );
-
-
-        const fecha =
-            new Date(
-                turno.fechaHora
-            );
-
-
-        return `
-            <tr>
-
-                <td>
-                    ${fecha.toLocaleString("es-AR")}
-                </td>
-
-                <td>
-                    ${
-                        mascota
-                            ? mascota.nombreMascota
-                            : "Mascota no encontrada"
                     }
-                </td>
+                );
 
-                <td>
-                    ${
-                        veterinario
-                            ? veterinario.nombre
-                            : "Veterinario no encontrado"
+
+            const veterinario =
+                veterinarios.find(
+                    function (v) {
+
+                        return (
+                            v.idVeterinario === turno.veterinario
+                        );
+
                     }
-                </td>
+                );
 
-                <td>
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        onclick="eliminarTurno('${turno.idTurno}')"
-                    >
-                        Eliminar
-                    </button>
+            const fecha =
+                new Date(
+                    turno.fechaHora
+                );
 
-                </td>
 
-            </tr>
-        `;
+            return `
+                <tr>
 
-    }).join("");
+                    <td>
+                        ${fecha.toLocaleString("es-AR")}
+                    </td>
+
+                    <td>
+                        ${
+                            mascota
+                                ? mascota.nombreMascota
+                                : "Mascota no encontrada"
+                        }
+                    </td>
+
+                    <td>
+                        ${
+                            veterinario
+                                ? veterinario.nombre
+                                : "Veterinario no encontrado"
+                        }
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminarTurno('${turno.idTurno}')"
+                        >
+                            Eliminar
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
 
 }
 
@@ -1237,23 +1280,16 @@ function prepararNuevoTurno() {
     ).value = "";
 
 
-    document.getElementById(
-        "tituloModalTurno"
-    ).textContent = "Nuevo turno";
-
-
-    document.getElementById(
-        "botonGuardarTurno"
-    ).textContent = "Guardar turno";
-
-
     cargarMascotasEnSelect();
+
     cargarVeterinariosEnSelect();
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalTurno")
+            document.getElementById(
+                "modalTurno"
+            )
         );
 
     modal.show();
@@ -1313,7 +1349,9 @@ function guardarTurno(evento) {
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalTurno")
+            document.getElementById(
+                "modalTurno"
+            )
         );
 
     modal.hide();
@@ -1327,14 +1365,14 @@ function guardarTurno(evento) {
 
 function eliminarTurno(id) {
 
-    const confirmar =
-        confirm(
+    if (
+        !confirm(
             "¿Seguro que querés eliminar este turno?"
-        );
+        )
+    ) {
 
-
-    if (!confirmar) {
         return;
+
     }
 
 
@@ -1366,7 +1404,7 @@ function eliminarTurno(id) {
 
 
 // ======================================================
-// HISTORIA CLÍNICA
+// HISTORIA CLÍNICA - SELECTS
 // ======================================================
 
 function cargarMascotasHistoria() {
@@ -1484,86 +1522,87 @@ function mostrarHistoriasClinicas() {
     }
 
 
-    tabla.innerHTML = historias.map(function (historia) {
+    tabla.innerHTML =
+        historias.map(function (historia) {
 
-        const mascota =
-            mascotas.find(
-                function (m) {
+            const mascota =
+                mascotas.find(
+                    function (m) {
 
-                    return (
-                        m.idMascota === historia.mascota
-                    );
+                        return (
+                            m.idMascota === historia.mascota
+                        );
 
-                }
-            );
-
-
-        const veterinario =
-            veterinarios.find(
-                function (v) {
-
-                    return (
-                        v.idVeterinario === historia.veterinario
-                    );
-
-                }
-            );
-
-
-        const fecha =
-            new Date(
-                historia.fechaHora
-            );
-
-
-        return `
-            <tr>
-
-                <td>
-                    ${fecha.toLocaleString("es-AR")}
-                </td>
-
-                <td>
-                    ${
-                        mascota
-                            ? mascota.nombreMascota
-                            : "Mascota no encontrada"
                     }
-                </td>
+                );
 
-                <td>
-                    ${
-                        veterinario
-                            ? veterinario.nombre
-                            : "Veterinario no encontrado"
+
+            const veterinario =
+                veterinarios.find(
+                    function (v) {
+
+                        return (
+                            v.idVeterinario === historia.veterinario
+                        );
+
                     }
-                </td>
+                );
 
-                <td>
-                    ${historia.observaciones}
-                </td>
 
-                <td>
+            const fecha =
+                new Date(
+                    historia.fechaHora
+                );
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        onclick="eliminarHistoria('${historia.idHistoriaClinica}')"
-                    >
-                        Eliminar
-                    </button>
 
-                </td>
+            return `
+                <tr>
 
-            </tr>
-        `;
+                    <td>
+                        ${fecha.toLocaleString("es-AR")}
+                    </td>
 
-    }).join("");
+                    <td>
+                        ${
+                            mascota
+                                ? mascota.nombreMascota
+                                : "Mascota no encontrada"
+                        }
+                    </td>
+
+                    <td>
+                        ${
+                            veterinario
+                                ? veterinario.nombre
+                                : "Veterinario no encontrado"
+                        }
+                    </td>
+
+                    <td>
+                        ${historia.observaciones}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            onclick="eliminarHistoria('${historia.idHistoriaClinica}')"
+                        >
+                            Eliminar
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
 
 }
 
 
 // ======================================================
-// NUEVA HISTORIA CLÍNICA
+// NUEVA HISTORIA
 // ======================================================
 
 function prepararNuevaHistoria() {
@@ -1578,25 +1617,16 @@ function prepararNuevaHistoria() {
     ).value = "";
 
 
-    document.getElementById(
-        "tituloModalHistoria"
-    ).textContent =
-        "Nueva historia clínica";
-
-
-    document.getElementById(
-        "botonGuardarHistoria"
-    ).textContent =
-        "Guardar historia";
-
-
     cargarMascotasHistoria();
+
     cargarVeterinariosHistoria();
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalHistoria")
+            document.getElementById(
+                "modalHistoria"
+            )
         );
 
     modal.show();
@@ -1605,7 +1635,7 @@ function prepararNuevaHistoria() {
 
 
 // ======================================================
-// GUARDAR HISTORIA CLÍNICA
+// GUARDAR HISTORIA
 // ======================================================
 
 function guardarHistoria(evento) {
@@ -1661,7 +1691,9 @@ function guardarHistoria(evento) {
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("modalHistoria")
+            document.getElementById(
+                "modalHistoria"
+            )
         );
 
     modal.hide();
@@ -1670,19 +1702,19 @@ function guardarHistoria(evento) {
 
 
 // ======================================================
-// ELIMINAR HISTORIA CLÍNICA
+// ELIMINAR HISTORIA
 // ======================================================
 
 function eliminarHistoria(id) {
 
-    const confirmar =
-        confirm(
+    if (
+        !confirm(
             "¿Seguro que querés eliminar esta historia clínica?"
-        );
+        )
+    ) {
 
-
-    if (!confirmar) {
         return;
+
     }
 
 
