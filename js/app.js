@@ -1846,3 +1846,71 @@ async function obtenerImagenMascotaAPI() {
     }
 
 }
+// ======================================================
+// OBTENER IMAGEN DE MASCOTA DESDE API
+// ======================================================
+
+async function obtenerImagenMascotaAPI() {
+
+    try {
+
+        const respuesta = await fetch(
+            "https://dog.ceo/api/breeds/image/random"
+        );
+
+        const datos = await respuesta.json();
+
+        if (datos.status !== "success") {
+
+            alert("No se pudo obtener la imagen.");
+
+            return;
+        }
+
+        const imagenURL = datos.message;
+
+        const vistaPrevia =
+            document.getElementById("vistaPreviaImagenAPI");
+
+        if (vistaPrevia) {
+
+            vistaPrevia.innerHTML = `
+
+                <p class="mb-2">
+                    Imagen obtenida desde la API:
+                </p>
+
+                <img
+                    src="${imagenURL}"
+                    alt="Imagen de mascota"
+                    style="
+                        width: 150px;
+                        height: 150px;
+                        object-fit: cover;
+                        border-radius: 15px;
+                    "
+                >
+
+            `;
+
+        }
+
+        console.log(
+            "Imagen obtenida desde API:",
+            imagenURL
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error al obtener la imagen:",
+            error
+        );
+
+        alert(
+            "Ocurrió un error al comunicarse con la API."
+        );
+
+    }
+
+}
