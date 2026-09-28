@@ -6,10 +6,18 @@
 
 
 // ======================================================
+// IMAGEN OBTENIDA DESDE LA API
+// ======================================================
+
+let imagenAPIBase64 = "";
+
+
+// ======================================================
 // DATOS INICIALES
 // ======================================================
 
 const veterinariosIniciales = [
+
     {
         idVeterinario: "vet001",
         matricula: "12345",
@@ -17,6 +25,7 @@ const veterinariosIniciales = [
         especializacion: "Clínica de pequeños animales",
         valorConsulta: 15000
     },
+
     {
         idVeterinario: "vet002",
         matricula: "12346",
@@ -24,6 +33,7 @@ const veterinariosIniciales = [
         especializacion: "Dermatología veterinaria",
         valorConsulta: 18000
     },
+
     {
         idVeterinario: "vet003",
         matricula: "12347",
@@ -31,10 +41,12 @@ const veterinariosIniciales = [
         especializacion: "Cirugía veterinaria",
         valorConsulta: 20000
     }
+
 ];
 
 
 const mascotasIniciales = [
+
     {
         idMascota: "mas001",
         nombreMascota: "Milo",
@@ -44,6 +56,7 @@ const mascotasIniciales = [
         peso: 12.5,
         imagenMascota: ""
     },
+
     {
         idMascota: "mas002",
         nombreMascota: "Luna",
@@ -53,6 +66,7 @@ const mascotasIniciales = [
         peso: 8.3,
         imagenMascota: ""
     }
+
 ];
 
 
@@ -182,6 +196,7 @@ function configurarEventos() {
     const formVeterinario =
         document.getElementById("formVeterinario");
 
+
     if (formVeterinario) {
 
         formVeterinario.addEventListener(
@@ -194,6 +209,7 @@ function configurarEventos() {
 
     const formMascota =
         document.getElementById("formMascota");
+
 
     if (formMascota) {
 
@@ -208,6 +224,7 @@ function configurarEventos() {
     const formTurno =
         document.getElementById("formTurno");
 
+
     if (formTurno) {
 
         formTurno.addEventListener(
@@ -220,6 +237,7 @@ function configurarEventos() {
 
     const formHistoria =
         document.getElementById("formHistoria");
+
 
     if (formHistoria) {
 
@@ -241,6 +259,7 @@ function mostrarVeterinarios() {
 
     const tabla =
         document.getElementById("tablaVeterinarios");
+
 
     if (!tabla) {
         return;
@@ -586,6 +605,7 @@ function mostrarMascotas() {
     const tabla =
         document.getElementById("tablaMascotas");
 
+
     if (!tabla) {
         return;
     }
@@ -703,6 +723,24 @@ function prepararNuevaMascota() {
         "tituloModalMascota"
     ).textContent =
         "Nueva mascota";
+
+
+    // Reiniciar imagen obtenida desde API
+
+    imagenAPIBase64 = "";
+
+
+    const vistaPrevia =
+        document.getElementById(
+            "vistaPreviaImagenAPI"
+        );
+
+
+    if (vistaPrevia) {
+
+        vistaPrevia.innerHTML = "";
+
+    }
 
 
     const modal =
@@ -880,6 +918,24 @@ function guardarMascota(evento) {
         cargarMascotasHistoria();
 
 
+        // Limpiar imagen de API
+
+        imagenAPIBase64 = "";
+
+
+        const vistaPrevia =
+            document.getElementById(
+                "vistaPreviaImagenAPI"
+            );
+
+
+        if (vistaPrevia) {
+
+            vistaPrevia.innerHTML = "";
+
+        }
+
+
         const modal =
             bootstrap.Modal.getOrCreateInstance(
                 document.getElementById(
@@ -892,6 +948,9 @@ function guardarMascota(evento) {
     }
 
 
+    // Si se marca eliminar imagen,
+    // se elimina cualquier imagen existente.
+
     if (eliminarImagen) {
 
         guardarDatos("");
@@ -900,6 +959,9 @@ function guardarMascota(evento) {
 
     }
 
+
+    // Si se seleccionó una imagen desde la computadora,
+    // tiene prioridad sobre la imagen de la API.
 
     if (archivo) {
 
@@ -920,13 +982,31 @@ function guardarMascota(evento) {
             archivo
         );
 
-    } else {
-
-        guardarDatos(
-            imagenActual
-        );
+        return;
 
     }
+
+
+    // Si se obtuvo una imagen desde la API,
+    // se guarda la imagen Base64.
+
+    if (imagenAPIBase64) {
+
+        guardarDatos(
+            imagenAPIBase64
+        );
+
+        return;
+
+    }
+
+
+    // Si no se eligió ninguna imagen nueva,
+    // se conserva la imagen anterior.
+
+    guardarDatos(
+        imagenActual
+    );
 
 }
 
@@ -1002,6 +1082,24 @@ function editarMascota(id) {
     document.getElementById(
         "eliminarImagen"
     ).checked = false;
+
+
+    // Reiniciar imagen de API
+
+    imagenAPIBase64 = "";
+
+
+    const vistaPrevia =
+        document.getElementById(
+            "vistaPreviaImagenAPI"
+        );
+
+
+    if (vistaPrevia) {
+
+        vistaPrevia.innerHTML = "";
+
+    }
 
 
     document.getElementById(
@@ -1081,6 +1179,7 @@ function cargarMascotasEnSelect() {
             "mascotaTurno"
         );
 
+
     if (!select) {
         return;
     }
@@ -1116,6 +1215,7 @@ function cargarVeterinariosEnSelect() {
         document.getElementById(
             "veterinarioTurno"
         );
+
 
     if (!select) {
         return;
@@ -1156,6 +1256,7 @@ function mostrarTurnos() {
         document.getElementById(
             "tablaTurnos"
         );
+
 
     if (!tabla) {
         return;
@@ -1414,6 +1515,7 @@ function cargarMascotasHistoria() {
             "mascotaHistoria"
         );
 
+
     if (!select) {
         return;
     }
@@ -1449,6 +1551,7 @@ function cargarVeterinariosHistoria() {
         document.getElementById(
             "veterinarioHistoria"
         );
+
 
     if (!select) {
         return;
@@ -1489,6 +1592,7 @@ function mostrarHistoriasClinicas() {
         document.getElementById(
             "tablaHistoriasClinicas"
         );
+
 
     if (!tabla) {
         return;
@@ -1743,6 +1847,8 @@ function eliminarHistoria(id) {
     mostrarHistoriasClinicas();
 
 }
+
+
 // ======================================================
 // API REST EXTERNA - FETCH
 // ======================================================
@@ -1751,13 +1857,21 @@ async function probarAPI() {
 
     try {
 
-        const respuesta = await fetch(
-            "https://dog.ceo/api/breeds/image/random"
+        const respuesta =
+            await fetch(
+                "https://dog.ceo/api/breeds/image/random"
+            );
+
+
+        const datos =
+            await respuesta.json();
+
+
+        console.log(
+            "Respuesta de la API:",
+            datos
         );
 
-        const datos = await respuesta.json();
-
-        console.log("Respuesta de la API:", datos);
 
         return datos;
 
@@ -1772,6 +1886,7 @@ async function probarAPI() {
 
 }
 
+
 // ======================================================
 // OBTENER IMAGEN DE MASCOTA DESDE API
 // ======================================================
@@ -1780,55 +1895,106 @@ async function obtenerImagenMascotaAPI() {
 
     try {
 
-        const respuesta = await fetch(
-            "https://dog.ceo/api/breeds/image/random"
-        );
+        const respuesta =
+            await fetch(
+                "https://dog.ceo/api/breeds/image/random"
+            );
 
-        const datos = await respuesta.json();
+
+        const datos =
+            await respuesta.json();
+
 
         if (datos.status !== "success") {
 
-            alert("No se pudo obtener la imagen.");
+            alert(
+                "No se pudo obtener la imagen."
+            );
 
             return;
-        }
-
-        const imagenURL = datos.message;
-
-
-        // Mostrar vista previa
-
-        const vistaPrevia =
-            document.getElementById("vistaPreviaImagenAPI");
-
-
-        if (vistaPrevia) {
-
-            vistaPrevia.innerHTML = `
-
-                <p class="mb-2">
-                    Imagen obtenida desde la API:
-                </p>
-
-                <img
-                    src="${imagenURL}"
-                    alt="Imagen de mascota"
-                    style="
-                        width: 150px;
-                        height: 150px;
-                        object-fit: cover;
-                        border-radius: 15px;
-                    "
-                >
-
-            `;
 
         }
 
 
-        console.log(
-            "Imagen obtenida desde API:",
-            imagenURL
+        const imagenURL =
+            datos.message;
+
+
+        // Descargar la imagen
+
+        const respuestaImagen =
+            await fetch(imagenURL);
+
+
+        if (!respuestaImagen.ok) {
+
+            throw new Error(
+                "No se pudo descargar la imagen."
+            );
+
+        }
+
+
+        const blob =
+            await respuestaImagen.blob();
+
+
+        // Convertir la imagen a Base64
+
+        const lector =
+            new FileReader();
+
+
+        lector.onloadend =
+            function () {
+
+                imagenAPIBase64 =
+                    lector.result;
+
+
+                const vistaPrevia =
+                    document.getElementById(
+                        "vistaPreviaImagenAPI"
+                    );
+
+
+                if (vistaPrevia) {
+
+                    vistaPrevia.innerHTML = `
+
+                        <p class="mb-2">
+                            Imagen obtenida desde la API:
+                        </p>
+
+                        <img
+                            src="${imagenAPIBase64}"
+                            alt="Imagen de mascota obtenida desde la API"
+                            style="
+                                width:150px;
+                                height:150px;
+                                object-fit:cover;
+                                border-radius:15px;
+                            "
+                        >
+
+                        <p class="text-success mt-2 mb-0">
+                            ✓ Imagen lista para guardar
+                        </p>
+
+                    `;
+
+                }
+
+
+                console.log(
+                    "Imagen de la API convertida a Base64."
+                );
+
+            };
+
+
+        lector.readAsDataURL(
+            blob
         );
 
 
@@ -1839,76 +2005,9 @@ async function obtenerImagenMascotaAPI() {
             error
         );
 
-        alert(
-            "Ocurrió un error al comunicarse con la API."
-        );
-
-    }
-
-}
-// ======================================================
-// OBTENER IMAGEN DE MASCOTA DESDE API
-// ======================================================
-
-async function obtenerImagenMascotaAPI() {
-
-    try {
-
-        const respuesta = await fetch(
-            "https://dog.ceo/api/breeds/image/random"
-        );
-
-        const datos = await respuesta.json();
-
-        if (datos.status !== "success") {
-
-            alert("No se pudo obtener la imagen.");
-
-            return;
-        }
-
-        const imagenURL = datos.message;
-
-        const vistaPrevia =
-            document.getElementById("vistaPreviaImagenAPI");
-
-        if (vistaPrevia) {
-
-            vistaPrevia.innerHTML = `
-
-                <p class="mb-2">
-                    Imagen obtenida desde la API:
-                </p>
-
-                <img
-                    src="${imagenURL}"
-                    alt="Imagen de mascota"
-                    style="
-                        width: 150px;
-                        height: 150px;
-                        object-fit: cover;
-                        border-radius: 15px;
-                    "
-                >
-
-            `;
-
-        }
-
-        console.log(
-            "Imagen obtenida desde API:",
-            imagenURL
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Error al obtener la imagen:",
-            error
-        );
 
         alert(
-            "Ocurrió un error al comunicarse con la API."
+            "Ocurrió un error al obtener la imagen desde la API."
         );
 
     }
