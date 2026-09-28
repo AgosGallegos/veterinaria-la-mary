@@ -1743,3 +1743,31 @@ function eliminarHistoria(id) {
     mostrarHistoriasClinicas();
 
 }
+// ======================================================
+// API REST EXTERNA - FETCH
+// ======================================================
+
+async function probarAPI() {
+
+    try {
+
+        const respuesta = await fetch(
+            "https://dog.ceo/api/breeds/image/random"
+        );
+
+        const datos = await respuesta.json();
+
+        console.log("Respuesta de la API:", datos);
+
+        return datos;
+
+    } catch (error) {
+
+        console.error(
+            "Error al consumir la API:",
+            error
+        );
+
+    }
+
+}
