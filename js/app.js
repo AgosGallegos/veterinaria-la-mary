@@ -1,214 +1,415 @@
-/* =========================================================
-   VETERINARIA LA MARY
-   SISTEMA DE ADMINISTRACIÓN
-   Veterinarios - Mascotas - Turnos
-========================================================= */
+// ======================================================
+// VETERINARIA LA MARY
+// ADMINISTRACIÓN
+// LocalStorage + CRUD
+// ======================================================
 
 
-/* =========================================================
-   VETERINARIOS
-========================================================= */
+// ======================================================
+// DATOS INICIALES
+// ======================================================
 
-function obtenerVeterinarios() {
+const veterinariosIniciales = [
+    {
+        idVeterinario: "vet001",
+        matricula: "12345",
+        nombre: "Dra. María González",
+        especializacion: "Clínica de pequeños animales",
+        valorConsulta: 15000
+    },
+    {
+        idVeterinario: "vet002",
+        matricula: "12346",
+        nombre: "Dr. Juan Pérez",
+        especializacion: "Dermatología veterinaria",
+        valorConsulta: 18000
+    },
+    {
+        idVeterinario: "vet003",
+        matricula: "12347",
+        nombre: "Dra. Laura Martínez",
+        especializacion: "Cirugía veterinaria",
+        valorConsulta: 20000
+    }
+];
 
-    let veterinarios = JSON.parse(
-        localStorage.getItem("veterinarios")
-    );
 
-    if (!veterinarios) {
+const mascotasIniciales = [
+    {
+        idMascota: "mas001",
+        nombreMascota: "Milo",
+        nombreDuenio: "Juan Pérez",
+        color: "Marrón",
+        edad: 3,
+        peso: 12.5,
+        imagenMascota: ""
+    },
+    {
+        idMascota: "mas002",
+        nombreMascota: "Luna",
+        nombreDuenio: "María González",
+        color: "Blanco",
+        edad: 2,
+        peso: 8.3,
+        imagenMascota: ""
+    }
+];
 
-        veterinarios = [
 
-            {
-                idVeterinario: "vet001",
-                matricula: "12345",
-                nombre: "Dra. María González",
-                especializacion: "Clínica de pequeños animales",
-                valorConsulta: 15000
-            },
+// ======================================================
+// INICIALIZACIÓN
+// ======================================================
 
-            {
-                idVeterinario: "vet002",
-                matricula: "12346",
-                nombre: "Dr. Juan Pérez",
-                especializacion: "Dermatología veterinaria",
-                valorConsulta: 18000
-            },
+document.addEventListener("DOMContentLoaded", function () {
 
-            {
-                idVeterinario: "vet003",
-                matricula: "12347",
-                nombre: "Dra. Laura Martínez",
-                especializacion: "Cirugía veterinaria",
-                valorConsulta: 20000
-            }
+    inicializarDatos();
 
-        ];
+    mostrarVeterinarios();
+    mostrarMascotas();
+    mostrarTurnos();
+    mostrarHistoriasClinicas();
+
+    cargarMascotasEnSelect();
+    cargarVeterinariosEnSelect();
+    cargarMascotasHistoria();
+    cargarVeterinariosHistoria();
+
+    configurarEventos();
+
+});
+
+
+// ======================================================
+// INICIALIZAR LOCALSTORAGE
+// ======================================================
+
+function inicializarDatos() {
+
+    if (!localStorage.getItem("veterinarios")) {
 
         localStorage.setItem(
             "veterinarios",
-            JSON.stringify(veterinarios)
+            JSON.stringify(veterinariosIniciales)
         );
+
     }
 
-    return veterinarios;
+
+    if (!localStorage.getItem("mascotas")) {
+
+        localStorage.setItem(
+            "mascotas",
+            JSON.stringify(mascotasIniciales)
+        );
+
+    }
+
+
+    if (!localStorage.getItem("turnos")) {
+
+        localStorage.setItem(
+            "turnos",
+            JSON.stringify([])
+        );
+
+    }
+
+
+    if (!localStorage.getItem("historiasClinicas")) {
+
+        localStorage.setItem(
+            "historiasClinicas",
+            JSON.stringify([])
+        );
+
+    }
+
 }
 
 
-/* Mostrar veterinarios */
+// ======================================================
+// OBTENER DATOS
+// ======================================================
+
+function obtenerVeterinarios() {
+
+    return JSON.parse(
+        localStorage.getItem("veterinarios")
+    ) || [];
+
+}
+
+
+function obtenerMascotas() {
+
+    return JSON.parse(
+        localStorage.getItem("mascotas")
+    ) || [];
+
+}
+
+
+function obtenerTurnos() {
+
+    return JSON.parse(
+        localStorage.getItem("turnos")
+    ) || [];
+
+}
+
+
+function obtenerHistoriasClinicas() {
+
+    return JSON.parse(
+        localStorage.getItem("historiasClinicas")
+    ) || [];
+
+}
+
+
+// ======================================================
+// CONFIGURAR EVENTOS
+// ======================================================
+
+function configurarEventos() {
+
+    const formVeterinario =
+        document.getElementById("formVeterinario");
+
+    if (formVeterinario) {
+
+        formVeterinario.addEventListener(
+            "submit",
+            guardarVeterinario
+        );
+
+    }
+
+
+    const formMascota =
+        document.getElementById("formMascota");
+
+    if (formMascota) {
+
+        formMascota.addEventListener(
+            "submit",
+            guardarMascota
+        );
+
+    }
+
+
+    const formTurno =
+        document.getElementById("formTurno");
+
+    if (formTurno) {
+
+        formTurno.addEventListener(
+            "submit",
+            guardarTurno
+        );
+
+    }
+
+
+    const formHistoria =
+        document.getElementById("formHistoria");
+
+    if (formHistoria) {
+
+        formHistoria.addEventListener(
+            "submit",
+            guardarHistoria
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// VETERINARIOS
+// ======================================================
 
 function mostrarVeterinarios() {
 
-    const tabla = document.getElementById(
-        "tablaVeterinarios"
-    );
+    const tabla =
+        document.getElementById("tablaVeterinarios");
 
     if (!tabla) {
         return;
     }
 
-    const veterinarios = obtenerVeterinarios();
 
-    tabla.innerHTML = "";
+    const veterinarios =
+        obtenerVeterinarios();
 
-    veterinarios.forEach(function (veterinario) {
 
-        const fila = document.createElement("tr");
+    if (veterinarios.length === 0) {
 
-        fila.innerHTML = `
-
-            <td>
-                ${veterinario.matricula}
-            </td>
-
-            <td>
-                ${veterinario.nombre}
-            </td>
-
-            <td>
-                ${veterinario.especializacion}
-            </td>
-
-            <td>
-                $${Number(veterinario.valorConsulta).toLocaleString("es-AR")}
-            </td>
-
-            <td>
-
-                <button
-                    class="btn btn-sm btn-warning me-1"
-                    onclick="editarVeterinario('${veterinario.idVeterinario}')"
-                >
-                    Editar
-                </button>
-
-                <button
-                    class="btn btn-sm btn-danger"
-                    onclick="eliminarVeterinario('${veterinario.idVeterinario}')"
-                >
-                    Eliminar
-                </button>
-
-            </td>
-
+        tabla.innerHTML = `
+            <tr>
+                <td colspan="5" class="text-center">
+                    No hay veterinarios registrados.
+                </td>
+            </tr>
         `;
 
-        tabla.appendChild(fila);
-    });
+        return;
+
+    }
+
+
+    tabla.innerHTML = veterinarios.map(function (veterinario) {
+
+        return `
+            <tr>
+
+                <td>
+                    ${veterinario.matricula}
+                </td>
+
+                <td>
+                    ${veterinario.nombre}
+                </td>
+
+                <td>
+                    ${veterinario.especializacion}
+                </td>
+
+                <td>
+                    $${Number(veterinario.valorConsulta).toLocaleString("es-AR")}
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-warning btn-sm me-1"
+                        onclick="editarVeterinario('${veterinario.idVeterinario}')"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="eliminarVeterinario('${veterinario.idVeterinario}')"
+                    >
+                        Eliminar
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
 }
 
 
-/* Preparar nuevo veterinario */
+// ======================================================
+// NUEVO VETERINARIO
+// ======================================================
 
 function prepararNuevoVeterinario() {
 
-    document.getElementById("formVeterinario").reset();
+    const formulario =
+        document.getElementById("formVeterinario");
 
-    document.getElementById("idVeterinario").value = "";
+    formulario.reset();
+
+
+    document.getElementById(
+        "idVeterinario"
+    ).value = "";
+
 
     document.getElementById(
         "tituloModalVeterinario"
     ).textContent = "Nuevo veterinario";
 
+
     document.getElementById(
         "botonGuardarVeterinario"
-    ).textContent = "Guardar";
+    ).textContent = "Guardar veterinario";
+
+
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalVeterinario")
+        );
+
+    modal.show();
+
 }
 
 
-/* Guardar veterinario */
+// ======================================================
+// GUARDAR VETERINARIO
+// ======================================================
 
-function guardarVeterinario() {
+function guardarVeterinario(evento) {
 
-    const id = document.getElementById(
-        "idVeterinario"
-    ).value;
-
-    const matricula = document.getElementById(
-        "matricula"
-    ).value.trim();
-
-    const nombre = document.getElementById(
-        "nombreVeterinario"
-    ).value.trim();
-
-    const especializacion = document.getElementById(
-        "especializacion"
-    ).value.trim();
-
-    const valorConsulta = Number(
-        document.getElementById(
-            "valorConsulta"
-        ).value
-    );
+    evento.preventDefault();
 
 
-    let veterinarios = obtenerVeterinarios();
+    const veterinarios =
+        obtenerVeterinarios();
+
+
+    const id =
+        document.getElementById("idVeterinario").value;
+
+
+    const nuevoVeterinario = {
+
+        idVeterinario:
+            id || "vet" + Date.now(),
+
+        matricula:
+            document.getElementById("matricula").value,
+
+        nombre:
+            document.getElementById("nombreVeterinario").value,
+
+        especializacion:
+            document.getElementById("especializacion").value,
+
+        valorConsulta:
+            Number(
+                document.getElementById("valorConsulta").value
+            )
+
+    };
 
 
     if (id) {
 
-        const indice = veterinarios.findIndex(
-            function (veterinario) {
-                return veterinario.idVeterinario === id;
-            }
-        );
+        const indice =
+            veterinarios.findIndex(
+                function (veterinario) {
+
+                    return (
+                        veterinario.idVeterinario === id
+                    );
+
+                }
+            );
+
 
         if (indice !== -1) {
 
-            veterinarios[indice] = {
-
-                idVeterinario: id,
-                matricula: matricula,
-                nombre: nombre,
-                especializacion: especializacion,
-                valorConsulta: valorConsulta
-
-            };
+            veterinarios[indice] =
+                nuevoVeterinario;
 
         }
 
     } else {
 
-        const nuevoVeterinario = {
-
-            idVeterinario:
-                "vet" + Date.now(),
-
-            matricula: matricula,
-
-            nombre: nombre,
-
-            especializacion:
-                especializacion,
-
-            valorConsulta:
-                valorConsulta
-        };
-
         veterinarios.push(
             nuevoVeterinario
         );
+
     }
 
 
@@ -221,27 +422,40 @@ function guardarVeterinario() {
     mostrarVeterinarios();
 
     cargarVeterinariosEnSelect();
+    cargarVeterinariosHistoria();
 
 
-    const modal = bootstrap.Modal.getOrCreateInstance(
-        document.getElementById("modalVeterinario")
-    );
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalVeterinario")
+        );
 
     modal.hide();
+
 }
 
 
-/* Editar veterinario */
+// ======================================================
+// EDITAR VETERINARIO
+// ======================================================
 
 function editarVeterinario(id) {
 
-    const veterinarios = obtenerVeterinarios();
+    const veterinarios =
+        obtenerVeterinarios();
 
-    const veterinario = veterinarios.find(
-        function (v) {
-            return v.idVeterinario === id;
-        }
-    );
+
+    const veterinario =
+        veterinarios.find(
+            function (v) {
+
+                return (
+                    v.idVeterinario === id
+                );
+
+            }
+        );
+
 
     if (!veterinario) {
         return;
@@ -252,17 +466,21 @@ function editarVeterinario(id) {
         "idVeterinario"
     ).value = veterinario.idVeterinario;
 
+
     document.getElementById(
         "matricula"
     ).value = veterinario.matricula;
+
 
     document.getElementById(
         "nombreVeterinario"
     ).value = veterinario.nombre;
 
+
     document.getElementById(
         "especializacion"
     ).value = veterinario.especializacion;
+
 
     document.getElementById(
         "valorConsulta"
@@ -273,39 +491,53 @@ function editarVeterinario(id) {
         "tituloModalVeterinario"
     ).textContent = "Editar veterinario";
 
+
     document.getElementById(
         "botonGuardarVeterinario"
     ).textContent = "Guardar cambios";
 
 
-    const modal = bootstrap.Modal.getOrCreateInstance(
-        document.getElementById("modalVeterinario")
-    );
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalVeterinario")
+        );
 
     modal.show();
+
 }
 
 
-/* Eliminar veterinario */
+// ======================================================
+// ELIMINAR VETERINARIO
+// ======================================================
 
 function eliminarVeterinario(id) {
 
-    const confirmar = confirm(
-        "¿Seguro que querés eliminar este veterinario?"
-    );
+    const confirmar =
+        confirm(
+            "¿Seguro que querés eliminar este veterinario?"
+        );
+
 
     if (!confirmar) {
         return;
     }
 
 
-    let veterinarios = obtenerVeterinarios();
+    let veterinarios =
+        obtenerVeterinarios();
 
-    veterinarios = veterinarios.filter(
-        function (veterinario) {
-            return veterinario.idVeterinario !== id;
-        }
-    );
+
+    veterinarios =
+        veterinarios.filter(
+            function (veterinario) {
+
+                return (
+                    veterinario.idVeterinario !== id
+                );
+
+            }
+        );
 
 
     localStorage.setItem(
@@ -317,157 +549,119 @@ function eliminarVeterinario(id) {
     mostrarVeterinarios();
 
     cargarVeterinariosEnSelect();
+    cargarVeterinariosHistoria();
+
 }
 
 
-/* =========================================================
-   MASCOTAS
-========================================================= */
-
-function obtenerMascotas() {
-
-    let mascotas = JSON.parse(
-        localStorage.getItem("mascotas")
-    );
-
-
-    if (!mascotas) {
-
-        mascotas = [
-
-            {
-                idMascota: "mas001",
-                nombreMascota: "Milo",
-                nombreDuenio: "Juan Pérez",
-                color: "Marrón",
-                edad: 3,
-                peso: 12.5,
-                imagenMascota: ""
-            },
-
-            {
-                idMascota: "mas002",
-                nombreMascota: "Luna",
-                nombreDuenio: "María González",
-                color: "Blanco",
-                edad: 2,
-                peso: 8.3,
-                imagenMascota: ""
-            }
-
-        ];
-
-
-        localStorage.setItem(
-            "mascotas",
-            JSON.stringify(mascotas)
-        );
-    }
-
-
-    return mascotas;
-}
-
-
-/* Mostrar mascotas */
+// ======================================================
+// MASCOTAS
+// ======================================================
 
 function mostrarMascotas() {
 
-    const tabla = document.getElementById(
-        "tablaMascotas"
-    );
+    const tabla =
+        document.getElementById("tablaMascotas");
 
     if (!tabla) {
         return;
     }
 
 
-    const mascotas = obtenerMascotas();
-
-    tabla.innerHTML = "";
-
-
-    mascotas.forEach(function (mascota) {
-
-        const fila = document.createElement("tr");
+    const mascotas =
+        obtenerMascotas();
 
 
-        let imagen = "Sin imagen";
+    if (mascotas.length === 0) {
 
-
-        if (mascota.imagenMascota) {
-
-            imagen = `
-
-                <img
-                    src="${mascota.imagenMascota}"
-                    alt="${mascota.nombreMascota}"
-                    width="70"
-                    height="70"
-                    style="
-                        object-fit: cover;
-                        border-radius: 10px;
-                    "
-                >
-
-            `;
-        }
-
-
-        fila.innerHTML = `
-
-            <td>
-                ${mascota.nombreMascota}
-            </td>
-
-            <td>
-                ${mascota.nombreDuenio}
-            </td>
-
-            <td>
-                ${mascota.color}
-            </td>
-
-            <td>
-                ${mascota.edad}
-            </td>
-
-            <td>
-                ${mascota.peso} kg
-            </td>
-
-            <td>
-                ${imagen}
-            </td>
-
-            <td>
-
-                <button
-                    class="btn btn-sm btn-warning me-1"
-                    onclick="editarMascota('${mascota.idMascota}')"
-                >
-                    Editar
-                </button>
-
-                <button
-                    class="btn btn-sm btn-danger"
-                    onclick="eliminarMascota('${mascota.idMascota}')"
-                >
-                    Eliminar
-                </button>
-
-            </td>
-
+        tabla.innerHTML = `
+            <tr>
+                <td colspan="7" class="text-center">
+                    No hay mascotas registradas.
+                </td>
+            </tr>
         `;
 
+        return;
 
-        tabla.appendChild(fila);
+    }
 
-    });
+
+    tabla.innerHTML = mascotas.map(function (mascota) {
+
+        const imagen =
+            mascota.imagenMascota
+                ? `
+                    <img
+                        src="${mascota.imagenMascota}"
+                        alt="${mascota.nombreMascota}"
+                        style="
+                            width:60px;
+                            height:60px;
+                            object-fit:cover;
+                            border-radius:10px;
+                        "
+                    >
+                `
+                : "Sin imagen";
+
+
+        return `
+            <tr>
+
+                <td>
+                    ${mascota.nombreMascota}
+                </td>
+
+                <td>
+                    ${mascota.nombreDuenio}
+                </td>
+
+                <td>
+                    ${mascota.color}
+                </td>
+
+                <td>
+                    ${mascota.edad}
+                </td>
+
+                <td>
+                    ${mascota.peso} kg
+                </td>
+
+                <td>
+                    ${imagen}
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-warning btn-sm me-1"
+                        onclick="editarMascota('${mascota.idMascota}')"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="eliminarMascota('${mascota.idMascota}')"
+                    >
+                        Eliminar
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
 }
 
 
-/* Preparar nueva mascota */
+// ======================================================
+// NUEVA MASCOTA
+// ======================================================
 
 function prepararNuevaMascota() {
 
@@ -482,285 +676,162 @@ function prepararNuevaMascota() {
 
 
     document.getElementById(
-        "eliminarImagen"
-    ).checked = false;
-
-
-    document.getElementById(
         "tituloModalMascota"
     ).textContent = "Nueva mascota";
 
 
     document.getElementById(
         "botonGuardarMascota"
-    ).textContent = "Guardar";
+    ).textContent = "Guardar mascota";
+
+
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalMascota")
+        );
+
+    modal.show();
+
 }
 
 
-/* Guardar mascota */
+// ======================================================
+// GUARDAR MASCOTA
+// ======================================================
 
-function guardarMascota() {
+function guardarMascota(evento) {
 
-    const id = document.getElementById(
-        "idMascota"
-    ).value;
-
-
-    const nombreMascota = document.getElementById(
-        "nombreMascota"
-    ).value.trim();
+    evento.preventDefault();
 
 
-    const nombreDuenio = document.getElementById(
-        "nombreDuenio"
-    ).value.trim();
+    const mascotas =
+        obtenerMascotas();
 
 
-    const color = document.getElementById(
-        "colorMascota"
-    ).value.trim();
+    const id =
+        document.getElementById("idMascota").value;
 
 
-    const edad = Number(
+    const nombre =
+        document.getElementById("nombreMascota").value;
+
+
+    const duenio =
+        document.getElementById("nombreDuenio").value;
+
+
+    const color =
+        document.getElementById("colorMascota").value;
+
+
+    const edad =
+        Number(
+            document.getElementById("edadMascota").value
+        );
+
+
+    const peso =
+        Number(
+            document.getElementById("pesoMascota").value
+        );
+
+
+    const archivo =
         document.getElementById(
-            "edadMascota"
-        ).value
-    );
+            "imagenMascota"
+        ).files[0];
 
 
-    const peso = Number(
+    const eliminarImagen =
         document.getElementById(
-            "pesoMascota"
-        ).value
-    );
+            "eliminarImagen"
+        ).checked;
 
 
-    const archivoImagen = document.getElementById(
-        "imagenMascota"
-    ).files[0];
+    let imagenActual = "";
 
 
-    const eliminarImagen = document.getElementById(
-        "eliminarImagen"
-    ).checked;
+    if (id) {
 
+        const mascotaAnterior =
+            mascotas.find(
+                function (m) {
 
-    let mascotas = obtenerMascotas();
-
-
-    /* ---------------------------------
-       NUEVA MASCOTA
-    --------------------------------- */
-
-    if (!id) {
-
-        if (archivoImagen) {
-
-            const lector = new FileReader();
-
-
-            lector.onload = function () {
-
-                const nuevaMascota = {
-
-                    idMascota:
-                        "mas" + Date.now(),
-
-                    nombreMascota:
-                        nombreMascota,
-
-                    nombreDuenio:
-                        nombreDuenio,
-
-                    color:
-                        color,
-
-                    edad:
-                        edad,
-
-                    peso:
-                        peso,
-
-                    imagenMascota:
-                        lector.result
-
-                };
-
-
-                mascotas.push(
-                    nuevaMascota
-                );
-
-
-                localStorage.setItem(
-                    "mascotas",
-                    JSON.stringify(mascotas)
-                );
-
-
-                mostrarMascotas();
-
-                cargarMascotasEnSelect();
-
-
-                const modal =
-                    bootstrap.Modal.getOrCreateInstance(
-                        document.getElementById(
-                            "modalMascota"
-                        )
+                    return (
+                        m.idMascota === id
                     );
 
-                modal.hide();
-
-            };
-
-
-            lector.readAsDataURL(
-                archivoImagen
+                }
             );
 
 
-        } else {
+        if (mascotaAnterior) {
 
-            const nuevaMascota = {
+            imagenActual =
+                mascotaAnterior.imagenMascota || "";
 
-                idMascota:
-                    "mas" + Date.now(),
-
-                nombreMascota:
-                    nombreMascota,
-
-                nombreDuenio:
-                    nombreDuenio,
-
-                color:
-                    color,
-
-                edad:
-                    edad,
-
-                peso:
-                    peso,
-
-                imagenMascota:
-                    ""
-
-            };
-
-
-            mascotas.push(
-                nuevaMascota
-            );
-
-
-            localStorage.setItem(
-                "mascotas",
-                JSON.stringify(mascotas)
-            );
-
-
-            mostrarMascotas();
-
-            cargarMascotasEnSelect();
-
-
-            const modal =
-                bootstrap.Modal.getOrCreateInstance(
-                    document.getElementById(
-                        "modalMascota"
-                    )
-                );
-
-            modal.hide();
         }
 
-
-        return;
     }
 
 
-    /* ---------------------------------
-       EDITAR MASCOTA
-    --------------------------------- */
+    function guardarDatos(imagenFinal) {
 
-    const indice = mascotas.findIndex(
-        function (mascota) {
-            return mascota.idMascota === id;
-        }
-    );
+        const mascota = {
 
+            idMascota:
+                id || "mas" + Date.now(),
 
-    if (indice === -1) {
-        return;
-    }
+            nombreMascota:
+                nombre,
 
+            nombreDuenio:
+                duenio,
 
-    mascotas[indice].nombreMascota =
-        nombreMascota;
+            color:
+                color,
 
-    mascotas[indice].nombreDuenio =
-        nombreDuenio;
+            edad:
+                edad,
 
-    mascotas[indice].color =
-        color;
+            peso:
+                peso,
 
-    mascotas[indice].edad =
-        edad;
-
-    mascotas[indice].peso =
-        peso;
-
-
-    /* Eliminar imagen */
-
-    if (eliminarImagen) {
-
-        mascotas[indice].imagenMascota = "";
-    }
-
-
-    /* Reemplazar imagen */
-
-    if (archivoImagen) {
-
-        const lector = new FileReader();
-
-
-        lector.onload = function () {
-
-            mascotas[indice].imagenMascota =
-                lector.result;
-
-
-            localStorage.setItem(
-                "mascotas",
-                JSON.stringify(mascotas)
-            );
-
-
-            mostrarMascotas();
-
-            cargarMascotasEnSelect();
-
-
-            const modal =
-                bootstrap.Modal.getOrCreateInstance(
-                    document.getElementById(
-                        "modalMascota"
-                    )
-                );
-
-            modal.hide();
+            imagenMascota:
+                imagenFinal
 
         };
 
 
-        lector.readAsDataURL(
-            archivoImagen
-        );
+        if (id) {
+
+            const indice =
+                mascotas.findIndex(
+                    function (m) {
+
+                        return (
+                            m.idMascota === id
+                        );
+
+                    }
+                );
 
 
-    } else {
+            if (indice !== -1) {
+
+                mascotas[indice] =
+                    mascota;
+
+            }
+
+        } else {
+
+            mascotas.push(
+                mascota
+            );
+
+        }
+
 
         localStorage.setItem(
             "mascotas",
@@ -771,33 +842,78 @@ function guardarMascota() {
         mostrarMascotas();
 
         cargarMascotasEnSelect();
+        cargarMascotasHistoria();
 
 
         const modal =
             bootstrap.Modal.getOrCreateInstance(
-                document.getElementById(
-                    "modalMascota"
-                )
+                document.getElementById("modalMascota")
             );
 
         modal.hide();
+
+    }
+
+
+    if (eliminarImagen) {
+
+        guardarDatos("");
+
+        return;
+
+    }
+
+
+    if (archivo) {
+
+        const lector =
+            new FileReader();
+
+
+        lector.onload = function () {
+
+            guardarDatos(
+                lector.result
+            );
+
+        };
+
+
+        lector.readAsDataURL(
+            archivo
+        );
+
+    } else {
+
+        guardarDatos(
+            imagenActual
+        );
+
     }
 
 }
 
 
-/* Editar mascota */
+// ======================================================
+// EDITAR MASCOTA
+// ======================================================
 
 function editarMascota(id) {
 
-    const mascotas = obtenerMascotas();
+    const mascotas =
+        obtenerMascotas();
 
 
-    const mascota = mascotas.find(
-        function (m) {
-            return m.idMascota === id;
-        }
-    );
+    const mascota =
+        mascotas.find(
+            function (m) {
+
+                return (
+                    m.idMascota === id
+                );
+
+            }
+        );
 
 
     if (!mascota) {
@@ -807,38 +923,32 @@ function editarMascota(id) {
 
     document.getElementById(
         "idMascota"
-    ).value =
-        mascota.idMascota;
+    ).value = mascota.idMascota;
 
 
     document.getElementById(
         "nombreMascota"
-    ).value =
-        mascota.nombreMascota;
+    ).value = mascota.nombreMascota;
 
 
     document.getElementById(
         "nombreDuenio"
-    ).value =
-        mascota.nombreDuenio;
+    ).value = mascota.nombreDuenio;
 
 
     document.getElementById(
         "colorMascota"
-    ).value =
-        mascota.color;
+    ).value = mascota.color;
 
 
     document.getElementById(
         "edadMascota"
-    ).value =
-        mascota.edad;
+    ).value = mascota.edad;
 
 
     document.getElementById(
         "pesoMascota"
-    ).value =
-        mascota.peso;
+    ).value = mascota.peso;
 
 
     document.getElementById(
@@ -853,35 +963,34 @@ function editarMascota(id) {
 
     document.getElementById(
         "tituloModalMascota"
-    ).textContent =
-        "Editar mascota";
+    ).textContent = "Editar mascota";
 
 
     document.getElementById(
         "botonGuardarMascota"
-    ).textContent =
-        "Guardar cambios";
+    ).textContent = "Guardar cambios";
 
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById(
-                "modalMascota"
-            )
+            document.getElementById("modalMascota")
         );
 
-
     modal.show();
+
 }
 
 
-/* Eliminar mascota */
+// ======================================================
+// ELIMINAR MASCOTA
+// ======================================================
 
 function eliminarMascota(id) {
 
-    const confirmar = confirm(
-        "¿Seguro que querés eliminar esta mascota?"
-    );
+    const confirmar =
+        confirm(
+            "¿Seguro que querés eliminar esta mascota?"
+        );
 
 
     if (!confirmar) {
@@ -889,14 +998,20 @@ function eliminarMascota(id) {
     }
 
 
-    let mascotas = obtenerMascotas();
+    let mascotas =
+        obtenerMascotas();
 
 
-    mascotas = mascotas.filter(
-        function (mascota) {
-            return mascota.idMascota !== id;
-        }
-    );
+    mascotas =
+        mascotas.filter(
+            function (mascota) {
+
+                return (
+                    mascota.idMascota !== id
+                );
+
+            }
+        );
 
 
     localStorage.setItem(
@@ -908,90 +1023,57 @@ function eliminarMascota(id) {
     mostrarMascotas();
 
     cargarMascotasEnSelect();
+    cargarMascotasHistoria();
+
 }
 
 
-/* =========================================================
-   TURNOS
-========================================================= */
-
-function obtenerTurnos() {
-
-    let turnos = JSON.parse(
-        localStorage.getItem("turnos")
-    );
-
-
-    if (!turnos) {
-
-        turnos = [];
-
-
-        localStorage.setItem(
-            "turnos",
-            JSON.stringify(turnos)
-        );
-    }
-
-
-    return turnos;
-}
-
-
-/* Cargar mascotas en el select */
+// ======================================================
+// TURNOS
+// ======================================================
 
 function cargarMascotasEnSelect() {
 
-    const select = document.getElementById(
-        "mascotaTurno"
-    );
-
+    const select =
+        document.getElementById(
+            "mascotaTurno"
+        );
 
     if (!select) {
         return;
     }
 
 
-    const mascotas = obtenerMascotas();
+    const mascotas =
+        obtenerMascotas();
 
 
     select.innerHTML = `
-
         <option value="">
             Seleccioná una mascota
         </option>
-
     `;
 
 
     mascotas.forEach(function (mascota) {
 
-        const opcion =
-            document.createElement("option");
-
-
-        opcion.value =
-            mascota.idMascota;
-
-
-        opcion.textContent =
-            `${mascota.nombreMascota} - Dueño: ${mascota.nombreDuenio}`;
-
-
-        select.appendChild(opcion);
+        select.innerHTML += `
+            <option value="${mascota.idMascota}">
+                ${mascota.nombreMascota} - Dueño: ${mascota.nombreDuenio}
+            </option>
+        `;
 
     });
+
 }
 
 
-/* Cargar veterinarios en el select */
-
 function cargarVeterinariosEnSelect() {
 
-    const select = document.getElementById(
-        "veterinarioTurno"
-    );
-
+    const select =
+        document.getElementById(
+            "veterinarioTurno"
+        );
 
     if (!select) {
         return;
@@ -1003,95 +1085,78 @@ function cargarVeterinariosEnSelect() {
 
 
     select.innerHTML = `
-
         <option value="">
             Seleccioná un veterinario
         </option>
-
     `;
 
 
-    veterinarios.forEach(
-        function (veterinario) {
+    veterinarios.forEach(function (veterinario) {
 
-            const opcion =
-                document.createElement(
-                    "option"
-                );
+        select.innerHTML += `
+            <option value="${veterinario.idVeterinario}">
+                ${veterinario.nombre} - ${veterinario.especializacion}
+            </option>
+        `;
 
+    });
 
-            opcion.value =
-                veterinario.idVeterinario;
-
-
-            opcion.textContent =
-                `${veterinario.nombre} - ${veterinario.especializacion}`;
-
-
-            select.appendChild(
-                opcion
-            );
-
-        }
-    );
 }
 
 
-/* Mostrar turnos */
+// ======================================================
+// MOSTRAR TURNOS
+// ======================================================
 
 function mostrarTurnos() {
 
-    const tabla = document.getElementById(
-        "tablaTurnos"
-    );
-
+    const tabla =
+        document.getElementById(
+            "tablaTurnos"
+        );
 
     if (!tabla) {
         return;
     }
 
 
-    const turnos = obtenerTurnos();
+    const turnos =
+        obtenerTurnos();
 
-    const mascotas = obtenerMascotas();
+
+    const mascotas =
+        obtenerMascotas();
+
 
     const veterinarios =
         obtenerVeterinarios();
 
 
-    tabla.innerHTML = "";
-
-
     if (turnos.length === 0) {
 
         tabla.innerHTML = `
-
             <tr>
-
-                <td
-                    colspan="4"
-                    class="text-center text-muted"
-                >
+                <td colspan="4" class="text-center">
                     No hay turnos registrados.
                 </td>
-
             </tr>
-
         `;
 
         return;
+
     }
 
 
-    turnos.forEach(function (turno) {
+    tabla.innerHTML = turnos.map(function (turno) {
 
         const mascota =
             mascotas.find(
                 function (m) {
+
                     return (
-                        m.idMascota ===
-                        turno.mascota
+                        m.idMascota === turno.mascota
                     );
+
                 }
             );
 
@@ -1099,109 +1164,72 @@ function mostrarTurnos() {
         const veterinario =
             veterinarios.find(
                 function (v) {
+
                     return (
-                        v.idVeterinario ===
-                        turno.veterinario
+                        v.idVeterinario === turno.veterinario
                     );
+
                 }
             );
 
 
-        let fechaFormateada =
-            "Fecha no disponible";
-
-
-        if (turno.fechaHora) {
-
-            const fecha =
-                new Date(
-                    turno.fechaHora
-                );
-
-
-            if (!isNaN(fecha.getTime())) {
-
-                fechaFormateada =
-                    fecha.toLocaleString(
-                        "es-AR",
-                        {
-                            dateStyle:
-                                "short",
-
-                            timeStyle:
-                                "short"
-                        }
-                    );
-            }
-        }
-
-
-        const fila =
-            document.createElement(
-                "tr"
+        const fecha =
+            new Date(
+                turno.fechaHora
             );
 
 
-        fila.innerHTML = `
+        return `
+            <tr>
 
-            <td>
-                ${fechaFormateada}
-            </td>
+                <td>
+                    ${fecha.toLocaleString("es-AR")}
+                </td>
 
-            <td>
-                ${
-                    mascota
-                        ? mascota.nombreMascota
-                        : "Mascota no encontrada"
-                }
-            </td>
+                <td>
+                    ${
+                        mascota
+                            ? mascota.nombreMascota
+                            : "Mascota no encontrada"
+                    }
+                </td>
 
-            <td>
-                ${
-                    veterinario
-                        ? veterinario.nombre
-                        : "Veterinario no encontrado"
-                }
-            </td>
+                <td>
+                    ${
+                        veterinario
+                            ? veterinario.nombre
+                            : "Veterinario no encontrado"
+                    }
+                </td>
 
-            <td>
+                <td>
 
-                <button
-                    class="btn btn-sm btn-danger"
-                    onclick="eliminarTurno('${turno.idTurno}')"
-                >
-                    Eliminar
-                </button>
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="eliminarTurno('${turno.idTurno}')"
+                    >
+                        Eliminar
+                    </button>
 
-            </td>
+                </td>
 
+            </tr>
         `;
 
+    }).join("");
 
-        tabla.appendChild(
-            fila
-        );
-
-    });
 }
 
 
-/* Preparar nuevo turno */
+// ======================================================
+// NUEVO TURNO
+// ======================================================
 
 function prepararNuevoTurno() {
 
-    const formulario =
-        document.getElementById(
-            "formTurno"
-        );
-
-
-    if (!formulario) {
-        return;
-    }
-
-
-    formulario.reset();
+    document.getElementById(
+        "formTurno"
+    ).reset();
 
 
     document.getElementById(
@@ -1211,75 +1239,60 @@ function prepararNuevoTurno() {
 
     document.getElementById(
         "tituloModalTurno"
-    ).textContent =
-        "Nuevo turno";
+    ).textContent = "Nuevo turno";
 
 
     document.getElementById(
         "botonGuardarTurno"
-    ).textContent =
-        "Guardar turno";
+    ).textContent = "Guardar turno";
 
 
     cargarMascotasEnSelect();
-
     cargarVeterinariosEnSelect();
+
+
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalTurno")
+        );
+
+    modal.show();
+
 }
 
 
-/* Guardar turno */
+// ======================================================
+// GUARDAR TURNO
+// ======================================================
 
-function guardarTurno() {
+function guardarTurno(evento) {
 
-    const fechaHora =
-        document.getElementById(
-            "fechaHoraTurno"
-        ).value;
-
-
-    const mascota =
-        document.getElementById(
-            "mascotaTurno"
-        ).value;
+    evento.preventDefault();
 
 
-    const veterinario =
-        document.getElementById(
-            "veterinarioTurno"
-        ).value;
-
-
-    if (
-        !fechaHora ||
-        !mascota ||
-        !veterinario
-    ) {
-
-        alert(
-            "Completá todos los campos del turno."
-        );
-
-        return;
-    }
-
-
-    let turnos =
+    const turnos =
         obtenerTurnos();
 
 
     const nuevoTurno = {
 
         idTurno:
-            "tur" + Date.now(),
+            "turno" + Date.now(),
 
         fechaHora:
-            fechaHora,
+            document.getElementById(
+                "fechaHoraTurno"
+            ).value,
 
         mascota:
-            mascota,
+            document.getElementById(
+                "mascotaTurno"
+            ).value,
 
         veterinario:
-            veterinario
+            document.getElementById(
+                "veterinarioTurno"
+            ).value
 
     };
 
@@ -1300,17 +1313,17 @@ function guardarTurno() {
 
     const modal =
         bootstrap.Modal.getOrCreateInstance(
-            document.getElementById(
-                "modalTurno"
-            )
+            document.getElementById("modalTurno")
         );
 
-
     modal.hide();
+
 }
 
 
-/* Eliminar turno */
+// ======================================================
+// ELIMINAR TURNO
+// ======================================================
 
 function eliminarTurno(id) {
 
@@ -1348,104 +1361,353 @@ function eliminarTurno(id) {
 
 
     mostrarTurnos();
+
 }
 
 
-/* =========================================================
-   INICIALIZACIÓN
-========================================================= */
+// ======================================================
+// HISTORIA CLÍNICA
+// ======================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+function cargarMascotasHistoria() {
 
+    const select =
+        document.getElementById(
+            "mascotaHistoria"
+        );
 
-        /* -------------------------
-           VETERINARIOS
-        -------------------------- */
-
-        mostrarVeterinarios();
-
-
-        const formularioVeterinario =
-            document.getElementById(
-                "formVeterinario"
-            );
+    if (!select) {
+        return;
+    }
 
 
-        if (formularioVeterinario) {
-
-            formularioVeterinario.addEventListener(
-                "submit",
-                function (evento) {
-
-                    evento.preventDefault();
-
-                    guardarVeterinario();
-
-                }
-            );
-        }
+    const mascotas =
+        obtenerMascotas();
 
 
-        /* -------------------------
-           MASCOTAS
-        -------------------------- */
-
-        mostrarMascotas();
-
-
-        const formularioMascota =
-            document.getElementById(
-                "formMascota"
-            );
+    select.innerHTML = `
+        <option value="">
+            Seleccioná una mascota
+        </option>
+    `;
 
 
-        if (formularioMascota) {
+    mascotas.forEach(function (mascota) {
 
-            formularioMascota.addEventListener(
-                "submit",
-                function (evento) {
+        select.innerHTML += `
+            <option value="${mascota.idMascota}">
+                ${mascota.nombreMascota} - Dueño: ${mascota.nombreDuenio}
+            </option>
+        `;
 
-                    evento.preventDefault();
+    });
 
-                    guardarMascota();
-
-                }
-            );
-        }
+}
 
 
-        /* -------------------------
-           TURNOS
-        -------------------------- */
+function cargarVeterinariosHistoria() {
 
-        mostrarTurnos();
+    const select =
+        document.getElementById(
+            "veterinarioHistoria"
+        );
 
-        cargarMascotasEnSelect();
-
-        cargarVeterinariosEnSelect();
-
-
-        const formularioTurno =
-            document.getElementById(
-                "formTurno"
-            );
+    if (!select) {
+        return;
+    }
 
 
-        if (formularioTurno) {
+    const veterinarios =
+        obtenerVeterinarios();
 
-            formularioTurno.addEventListener(
-                "submit",
-                function (evento) {
 
-                    evento.preventDefault();
+    select.innerHTML = `
+        <option value="">
+            Seleccioná un veterinario
+        </option>
+    `;
 
-                    guardarTurno();
 
-                }
-            );
-        }
+    veterinarios.forEach(function (veterinario) {
+
+        select.innerHTML += `
+            <option value="${veterinario.idVeterinario}">
+                ${veterinario.nombre} - ${veterinario.especializacion}
+            </option>
+        `;
+
+    });
+
+}
+
+
+// ======================================================
+// MOSTRAR HISTORIAS CLÍNICAS
+// ======================================================
+
+function mostrarHistoriasClinicas() {
+
+    const tabla =
+        document.getElementById(
+            "tablaHistoriasClinicas"
+        );
+
+    if (!tabla) {
+        return;
+    }
+
+
+    const historias =
+        obtenerHistoriasClinicas();
+
+
+    const mascotas =
+        obtenerMascotas();
+
+
+    const veterinarios =
+        obtenerVeterinarios();
+
+
+    if (historias.length === 0) {
+
+        tabla.innerHTML = `
+            <tr>
+                <td colspan="5" class="text-center">
+                    No hay historias clínicas registradas.
+                </td>
+            </tr>
+        `;
+
+        return;
 
     }
-);
+
+
+    tabla.innerHTML = historias.map(function (historia) {
+
+        const mascota =
+            mascotas.find(
+                function (m) {
+
+                    return (
+                        m.idMascota === historia.mascota
+                    );
+
+                }
+            );
+
+
+        const veterinario =
+            veterinarios.find(
+                function (v) {
+
+                    return (
+                        v.idVeterinario === historia.veterinario
+                    );
+
+                }
+            );
+
+
+        const fecha =
+            new Date(
+                historia.fechaHora
+            );
+
+
+        return `
+            <tr>
+
+                <td>
+                    ${fecha.toLocaleString("es-AR")}
+                </td>
+
+                <td>
+                    ${
+                        mascota
+                            ? mascota.nombreMascota
+                            : "Mascota no encontrada"
+                    }
+                </td>
+
+                <td>
+                    ${
+                        veterinario
+                            ? veterinario.nombre
+                            : "Veterinario no encontrado"
+                    }
+                </td>
+
+                <td>
+                    ${historia.observaciones}
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        onclick="eliminarHistoria('${historia.idHistoriaClinica}')"
+                    >
+                        Eliminar
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
+}
+
+
+// ======================================================
+// NUEVA HISTORIA CLÍNICA
+// ======================================================
+
+function prepararNuevaHistoria() {
+
+    document.getElementById(
+        "formHistoria"
+    ).reset();
+
+
+    document.getElementById(
+        "idHistoriaClinica"
+    ).value = "";
+
+
+    document.getElementById(
+        "tituloModalHistoria"
+    ).textContent =
+        "Nueva historia clínica";
+
+
+    document.getElementById(
+        "botonGuardarHistoria"
+    ).textContent =
+        "Guardar historia";
+
+
+    cargarMascotasHistoria();
+    cargarVeterinariosHistoria();
+
+
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalHistoria")
+        );
+
+    modal.show();
+
+}
+
+
+// ======================================================
+// GUARDAR HISTORIA CLÍNICA
+// ======================================================
+
+function guardarHistoria(evento) {
+
+    evento.preventDefault();
+
+
+    const historias =
+        obtenerHistoriasClinicas();
+
+
+    const nuevaHistoria = {
+
+        idHistoriaClinica:
+            "hist" + Date.now(),
+
+        mascota:
+            document.getElementById(
+                "mascotaHistoria"
+            ).value,
+
+        veterinario:
+            document.getElementById(
+                "veterinarioHistoria"
+            ).value,
+
+        fechaHora:
+            document.getElementById(
+                "fechaHoraHistoria"
+            ).value,
+
+        observaciones:
+            document.getElementById(
+                "observacionesHistoria"
+            ).value
+
+    };
+
+
+    historias.push(
+        nuevaHistoria
+    );
+
+
+    localStorage.setItem(
+        "historiasClinicas",
+        JSON.stringify(historias)
+    );
+
+
+    mostrarHistoriasClinicas();
+
+
+    const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("modalHistoria")
+        );
+
+    modal.hide();
+
+}
+
+
+// ======================================================
+// ELIMINAR HISTORIA CLÍNICA
+// ======================================================
+
+function eliminarHistoria(id) {
+
+    const confirmar =
+        confirm(
+            "¿Seguro que querés eliminar esta historia clínica?"
+        );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+    let historias =
+        obtenerHistoriasClinicas();
+
+
+    historias =
+        historias.filter(
+            function (historia) {
+
+                return (
+                    historia.idHistoriaClinica !== id
+                );
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "historiasClinicas",
+        JSON.stringify(historias)
+    );
+
+
+    mostrarHistoriasClinicas();
+
+}
