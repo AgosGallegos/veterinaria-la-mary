@@ -1,185 +1,331 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contacto | Veterinaria La Mary</title>
 
+    <!-- CSS propio -->
     <link rel="stylesheet" href="style.css?v=3">
     <link rel="stylesheet" href="paginas.css?v=1">
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 </head>
 
 <body class="pagina-contacto">
 
     <!-- ENCABEZADO -->
     <header class="header">
-        <div class="contenedor nav">
 
-            <a href="index.html" class="logo">
-                🐾 Veterinaria La Mary
-            </a>
+        <nav class="navbar navbar-expand-lg">
 
-            <nav>
-                <a href="index.html">Inicio</a>
-                <a href="institucional.html">Institucional</a>
-                <a href="contacto.html" class="activo">Contacto</a>
-            </nav>
+            <div class="container contenedor nav">
 
-        </div>
+                <!-- LOGO -->
+                <a href="index.html" class="navbar-brand logo">
+                    🐾 Veterinaria La Mary
+                </a>
+
+                <!-- BOTÓN DEL MENÚ EN CELULAR -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Abrir menú"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- MENÚ -->
+                <div
+                    class="collapse navbar-collapse"
+                    id="menuPrincipal"
+                >
+
+                    <nav class="navbar-nav ms-auto">
+
+                        <a
+                            href="index.html"
+                            class="nav-link"
+                        >
+                            Inicio
+                        </a>
+
+                        <a
+                            href="institucional.html"
+                            class="nav-link"
+                        >
+                            Institucional
+                        </a>
+
+                        <a
+                            href="contacto.html"
+                            class="nav-link activo"
+                        >
+                            Contacto
+                        </a>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </nav>
+
     </header>
 
 
     <!-- CONTENIDO -->
     <main class="pagina-contenido">
 
-        <div class="titulo-pagina">
-            <h1>Contacto</h1>
-            <p>Estamos para ayudarte.</p>
+        <div class="container">
+
+            <div class="titulo-pagina">
+
+                <h1>
+                    Contacto
+                </h1>
+
+                <p>
+                    Estamos para ayudarte.
+                </p>
+
+            </div>
+
+
+            <!-- INFORMACIÓN Y FORMULARIO -->
+            <section class="contacto-grid">
+
+                <!-- INFORMACIÓN -->
+                <div class="tarjeta-contacto">
+
+                    <h2>
+                        Encontranos
+                    </h2>
+
+
+                    <div class="dato-contacto">
+
+                        <div class="icono-contacto">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Dirección
+                            </h3>
+
+                            <p>
+                                Av. Ejemplo 1234, Paraná, Entre Ríos
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dato-contacto">
+
+                        <div class="icono-contacto">
+                            📞
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Teléfono
+                            </h3>
+
+                            <p>
+                                (0343) 123-4567
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dato-contacto">
+
+                        <div class="icono-contacto">
+                            ✉️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Email
+                            </h3>
+
+                            <p>
+                                info@veterinarialamary.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dato-contacto">
+
+                        <div class="icono-contacto">
+                            🕐
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Horarios
+                            </h3>
+
+                            <p>
+                                Lunes a viernes: 8:00 a 19:00 hs.
+                            </p>
+
+                            <p>
+                                Sábados: 9:00 a 13:00 hs.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="frase-contacto">
+
+                        🐾
+
+                        <p>
+                            Cuidamos a quienes forman parte de tu familia.
+                        </p>
+
+                        ❤️
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORMULARIO -->
+                <div class="tarjeta-contacto">
+
+                    <h2>
+                        Escribinos
+                    </h2>
+
+
+                    <form>
+
+                        <!-- NOMBRE -->
+                        <div class="campo mb-3">
+
+                            <label
+                                for="nombre"
+                                class="form-label"
+                            >
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                class="form-control"
+                                placeholder="Ingresá tu nombre"
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+                        <div class="campo mb-3">
+
+                            <label
+                                for="email"
+                                class="form-label"
+                            >
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Ingresá tu email"
+                            >
+
+                        </div>
+
+
+                        <!-- TELÉFONO -->
+                        <div class="campo mb-3">
+
+                            <label
+                                for="telefono"
+                                class="form-label"
+                            >
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefono"
+                                name="telefono"
+                                class="form-control"
+                                placeholder="Ingresá tu teléfono"
+                            >
+
+                        </div>
+
+
+                        <!-- MENSAJE -->
+                        <div class="campo mb-3">
+
+                            <label
+                                for="mensaje"
+                                class="form-label"
+                            >
+                                Mensaje
+                            </label>
+
+                            <textarea
+                                id="mensaje"
+                                name="mensaje"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Escribí tu consulta..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- BOTÓN -->
+                        <button
+                            type="submit"
+                            class="btn"
+                        >
+                            ✈️ Enviar mensaje
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
         </div>
-
-
-        <section class="contacto-grid">
-
-            <!-- INFORMACIÓN -->
-            <div class="tarjeta-contacto">
-
-                <h2>Encontranos</h2>
-
-                <div class="dato-contacto">
-
-                    <div class="icono-contacto">📍</div>
-
-                    <div>
-                        <h3>Dirección</h3>
-                        <p>
-                            Av. Ejemplo 1234, Paraná, Entre Ríos
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="dato-contacto">
-
-                    <div class="icono-contacto">📞</div>
-
-                    <div>
-                        <h3>Teléfono</h3>
-                        <p>
-                            (0343) 123-4567
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="dato-contacto">
-
-                    <div class="icono-contacto">✉️</div>
-
-                    <div>
-                        <h3>Email</h3>
-                        <p>
-                            info@veterinarialamary.com
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="dato-contacto">
-
-                    <div class="icono-contacto">🕐</div>
-
-                    <div>
-                        <h3>Horarios</h3>
-                        <p>
-                            Lunes a viernes: 8:00 a 19:00 hs.
-                        </p>
-
-                        <p>
-                            Sábados: 9:00 a 13:00 hs.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="frase-contacto">
-                    🐾
-                    <p>
-                        Cuidamos a quienes forman parte de tu familia.
-                    </p>
-                    ❤️
-                </div>
-
-            </div>
-
-
-            <!-- FORMULARIO -->
-            <div class="tarjeta-contacto">
-
-                <h2>Escribinos</h2>
-
-                <form>
-
-                    <div class="campo">
-                        <label for="nombre">Nombre</label>
-
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Ingresá tu nombre"
-                        >
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="email">Email</label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Ingresá tu email"
-                        >
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="telefono">Teléfono</label>
-
-                        <input
-                            type="tel"
-                            id="telefono"
-                            name="telefono"
-                            placeholder="Ingresá tu teléfono"
-                        >
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="mensaje">Mensaje</label>
-
-                        <textarea
-                            id="mensaje"
-                            name="mensaje"
-                            rows="5"
-                            placeholder="Escribí tu consulta..."
-                        ></textarea>
-                    </div>
-
-
-                    <button type="submit">
-                        ✈️ Enviar mensaje
-                    </button>
-
-                </form>
-
-            </div>
-
-        </section>
 
     </main>
 
@@ -187,29 +333,61 @@
     <!-- PIE DE PÁGINA -->
     <footer class="footer">
 
-        <div class="contenedor footer-contenido">
+        <div class="container contenedor footer-contenido">
 
             <div>
-                <h3>🐾 Veterinaria La Mary</h3>
-                <p>Cuidamos a quienes forman parte de tu familia.</p>
+
+                <h3>
+                    🐾 Veterinaria La Mary
+                </h3>
+
+                <p>
+                    Cuidamos a quienes forman parte de tu familia.
+                </p>
+
             </div>
 
+
             <div>
-                <h4>Contacto</h4>
-                <p>📍 Paraná, Entre Ríos</p>
-                <p>📞 0343 - 1234567</p>
-                <p>✉️ info@veterinarialamary.com</p>
+
+                <h4>
+                    Contacto
+                </h4>
+
+                <p>
+                    📍 Paraná, Entre Ríos
+                </p>
+
+                <p>
+                    📞 0343 - 1234567
+                </p>
+
+                <p>
+                    ✉️ info@veterinarialamary.com
+                </p>
+
             </div>
 
         </div>
 
+
         <div class="footer-bottom">
+
             <p>
                 © 2026 Veterinaria La Mary. Todos los derechos reservados.
             </p>
+
         </div>
 
     </footer>
 
+
+    <!-- JavaScript de Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="js/app.js"></script>
+
 </body>
+
 </html>

@@ -249,9 +249,7 @@ a {
 }
 
 .beneficios-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    width: 100%;
 }
 
 .beneficio {
@@ -300,21 +298,24 @@ a {
 }
 
 .profesionales-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    width: 100%;
 }
 
 .profesional {
-    background-color: var(--blanco);
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(38, 70, 83, 0.08);
     transition: 0.3s ease;
 }
 
 .profesional:hover {
     transform: translateY(-6px);
+}
+
+.profesional .card {
+    height: 100%;
+    background-color: var(--blanco);
+    border: none;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(38, 70, 83, 0.08);
 }
 
 .profesional img {
@@ -460,11 +461,6 @@ a {
 
 @media (max-width: 900px) {
 
-    .beneficios-grid,
-    .profesionales-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .mascotas-contenedor {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -522,11 +518,6 @@ a {
         padding: 65px 0;
     }
 
-    .beneficios-grid,
-    .profesionales-grid {
-        grid-template-columns: 1fr;
-    }
-
     .profesional img {
         height: 280px;
     }
@@ -537,8 +528,13 @@ a {
 
     .footer-contenido {
         grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+}
 
-       /* =========================================
+
+/* =========================================
    PAGINAS INSTITUCIONAL Y CONTACTO
 ========================================= */
 
@@ -557,7 +553,9 @@ a {
 }
 
 
-/* CONTENIDO GENERAL */
+/* =========================
+   CONTENIDO GENERAL
+========================= */
 
 .pagina-contenido {
     min-height: calc(100vh - 80px);
@@ -565,7 +563,9 @@ a {
 }
 
 
-/* TITULO */
+/* =========================
+   TITULO
+========================= */
 
 .titulo-pagina {
     text-align: center;
@@ -600,7 +600,6 @@ a {
     backdrop-filter: blur(5px);
 }
 
-
 .bloque-institucional {
     display: grid;
     grid-template-columns: 75px 1fr;
@@ -610,11 +609,9 @@ a {
     border-bottom: 1px solid #e5eeee;
 }
 
-
 .bloque-institucional:first-child {
     padding-top: 0;
 }
-
 
 .icono-institucional {
     width: 65px;
@@ -628,13 +625,11 @@ a {
     font-size: 30px;
 }
 
-
 .bloque-institucional h2 {
     color: var(--azul);
     font-size: 27px;
     margin-bottom: 10px;
 }
-
 
 .bloque-institucional p {
     color: var(--gris-texto);
@@ -643,12 +638,13 @@ a {
 }
 
 
-/* VALORES */
+/* =========================
+   VALORES
+========================= */
 
 .valores-institucional {
     padding-top: 30px;
 }
-
 
 .titulo-valores {
     display: flex;
@@ -657,19 +653,16 @@ a {
     margin-bottom: 25px;
 }
 
-
 .titulo-valores h2 {
     color: var(--azul);
     font-size: 27px;
 }
-
 
 .valores-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
-
 
 .valor {
     background-color: rgba(228, 246, 243, 0.75);
@@ -678,20 +671,17 @@ a {
     text-align: center;
 }
 
-
 .valor > span {
     font-size: 30px;
     display: block;
     margin-bottom: 10px;
 }
 
-
 .valor h3 {
     color: var(--azul);
     font-size: 19px;
     margin-bottom: 8px;
 }
-
 
 .valor p {
     color: var(--gris-texto);
@@ -711,7 +701,6 @@ a {
     gap: 25px;
 }
 
-
 .tarjeta-contacto {
     background: rgba(255, 255, 255, 0.93);
     border-radius: 25px;
@@ -720,7 +709,6 @@ a {
     backdrop-filter: blur(5px);
 }
 
-
 .tarjeta-contacto h2 {
     color: var(--azul);
     font-size: 30px;
@@ -728,7 +716,9 @@ a {
 }
 
 
-/* DATOS */
+/* =========================
+   DATOS
+========================= */
 
 .dato-contacto {
     display: grid;
@@ -737,7 +727,6 @@ a {
     align-items: center;
     margin-bottom: 25px;
 }
-
 
 .icono-contacto {
     width: 55px;
@@ -751,13 +740,11 @@ a {
     font-size: 25px;
 }
 
-
 .dato-contacto h3 {
     color: var(--azul);
     font-size: 18px;
     margin-bottom: 3px;
 }
-
 
 .dato-contacto p {
     color: var(--gris-texto);
@@ -766,7 +753,9 @@ a {
 }
 
 
-/* FRASE */
+/* =========================
+   FRASE
+========================= */
 
 .frase-contacto {
     margin-top: 30px;
@@ -781,7 +770,6 @@ a {
     text-align: center;
 }
 
-
 .frase-contacto p {
     font-size: 17px;
     font-style: italic;
@@ -790,12 +778,13 @@ a {
 }
 
 
-/* FORMULARIO */
+/* =========================
+   FORMULARIO
+========================= */
 
 .campo {
     margin-bottom: 18px;
 }
-
 
 .campo label {
     display: block;
@@ -803,7 +792,6 @@ a {
     font-weight: 700;
     margin-bottom: 7px;
 }
-
 
 .campo input,
 .campo textarea {
@@ -819,18 +807,15 @@ a {
     transition: 0.3s ease;
 }
 
-
 .campo input:focus,
 .campo textarea:focus {
     border-color: var(--verde);
     box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.12);
 }
 
-
 .campo textarea {
     resize: vertical;
 }
-
 
 .tarjeta-contacto button {
     width: 100%;
@@ -845,7 +830,6 @@ a {
     transition: 0.3s ease;
 }
 
-
 .tarjeta-contacto button:hover {
     background-color: var(--verde-oscuro);
     transform: translateY(-2px);
@@ -853,7 +837,7 @@ a {
 
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE - PAGINAS INTERNAS
 ========================================= */
 
 @media (max-width: 800px) {
@@ -897,8 +881,4 @@ a {
         padding: 30px 22px;
     }
 
-}
-        gap: 30px;
-        text-align: center;
-    }
 }

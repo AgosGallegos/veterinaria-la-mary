@@ -1,29 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Veterinaria La Mary</title>
+
+    <!-- CSS propio -->
     <link rel="stylesheet" href="style.css?v=2">
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 </head>
 
-<body>
+<body>00
 
     <!-- ENCABEZADO -->
     <header class="header">
-        <div class="contenedor nav">
 
-            <a href="index.html" class="logo">
-                🐾 Veterinaria La Mary
-            </a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container contenedor nav">
 
-            <nav>
-                <a href="index.html" class="activo">Inicio</a>
-                <a href="institucional.html">Institucional</a>
-                <a href="contacto.html">Contacto</a>
-            </nav>
+                <!-- LOGO -->
+                <a href="index.html" class="navbar-brand logo">
+                    🐾 Veterinaria La Mary
+                </a>
 
-        </div>
+                <!-- BOTÓN DEL MENÚ EN CELULAR -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Abrir menú"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- MENÚ -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <nav class="navbar-nav ms-auto">
+
+                        <a
+                            href="index.html"
+                            class="nav-link activo"
+                        >
+                            Inicio
+                        </a>
+
+                        <a
+                            href="institucional.html"
+                            class="nav-link"
+                        >
+                            Institucional
+                        </a>
+
+                        <a
+                            href="contacto.html"
+                            class="nav-link"
+                        >
+                            Contacto
+                        </a>
+
+                    </nav>
+
+                </div>
+
+            </div>
+        </nav>
+
     </header>
 
 
@@ -33,7 +85,10 @@
         <section class="hero">
 
             <div class="hero-contenido">
-                <span class="etiqueta">🐾 Cuidado y amor para tu mascota</span>
+
+                <span class="etiqueta">
+                    🐾 Cuidado y amor para tu mascota
+                </span>
 
                 <h1>
                     La salud de tu mascota
@@ -47,14 +102,23 @@
                 </p>
 
                 <div class="botones">
-                    <a href="contacto.html" class="boton boton-principal">
+
+                    <a
+                        href="contacto.html"
+                        class="boton boton-principal"
+                    >
                         Contactanos
                     </a>
 
-                    <a href="institucional.html" class="boton boton-secundario">
+                    <a
+                        href="institucional.html"
+                        class="boton boton-secundario"
+                    >
                         Conocé más
                     </a>
+
                 </div>
+
             </div>
 
         </section>
@@ -63,10 +127,13 @@
         <!-- BENEFICIOS -->
         <section class="seccion beneficios">
 
-            <div class="contenedor">
+            <div class="container contenedor">
 
                 <div class="titulo-seccion">
-                    <span>💚 ¿Por qué elegirnos?</span>
+
+                    <span>
+                        💚 ¿Por qué elegirnos?
+                    </span>
 
                     <h2>
                         Cuidamos a tu mascota como parte de la familia
@@ -76,13 +143,17 @@
                         Nuestro objetivo es brindar una atención de calidad
                         para mejorar la salud y el bienestar de cada mascota.
                     </p>
+
                 </div>
 
 
-                <div class="beneficios-grid">
+                <div class="beneficios-grid row g-4">
 
-                    <article class="beneficio">
-                        <div class="icono">🩺</div>
+                    <article class="beneficio col-12 col-sm-6 col-lg-4">
+
+                        <div class="icono">
+                            🩺
+                        </div>
 
                         <h3>
                             Atención profesional
@@ -92,11 +163,15 @@
                             Profesionales capacitados para atender las
                             necesidades de perros y gatos.
                         </p>
+
                     </article>
 
 
-                    <article class="beneficio">
-                        <div class="icono">❤️</div>
+                    <article class="beneficio col-12 col-sm-6 col-lg-4">
+
+                        <div class="icono">
+                            ❤️
+                        </div>
 
                         <h3>
                             Trato personalizado
@@ -106,11 +181,15 @@
                             Brindamos una atención cercana y responsable
                             para cada mascota.
                         </p>
+
                     </article>
 
 
-                    <article class="beneficio">
-                        <div class="icono">🐾</div>
+                    <article class="beneficio col-12 col-sm-6 col-lg-4">
+
+                        <div class="icono">
+                            🐾
+                        </div>
 
                         <h3>
                             Bienestar animal
@@ -120,6 +199,7 @@
                             Trabajamos para garantizar la salud y calidad
                             de vida de nuestros pacientes.
                         </p>
+
                     </article>
 
                 </div>
@@ -132,10 +212,13 @@
         <!-- PROFESIONALES -->
         <section class="seccion equipo">
 
-            <div class="contenedor">
+            <div class="container contenedor">
 
                 <div class="titulo-seccion">
-                    <span>👩‍⚕️ Nuestro equipo</span>
+
+                    <span>
+                        👩‍⚕️ Nuestro equipo
+                    </span>
 
                     <h2>
                         Profesionales que cuidan a tu mascota
@@ -145,33 +228,41 @@
                         Conocé a algunos de los profesionales que forman parte
                         de Veterinaria La Mary.
                     </p>
+
                 </div>
 
 
-                <div class="profesionales-grid">
+                <!-- GRID DE BOOTSTRAP -->
+                <div class="profesionales-grid row g-4 justify-content-center"></div>
 
 
                     <!-- PROFESIONAL 1 -->
-                    <article class="profesional">
+                    <article class="profesional col-12 col-sm-6 col-lg-4">
 
-                        <img
-                            src="./img/veterinario1.jpg"
-                            alt="Profesional veterinario"
-                        >
+                        <!-- BOOTSTRAP CARD -->
+                        <div class="card h-100">
 
-                        <div class="profesional-contenido">
+                            <img
+                                src="./img/veterinario1.jpg"
+                                alt="Profesional veterinario"
+                                class="card-img-top img-fluid"
+                            >
 
-                            <span class="especialidad">
-                                Medicina veterinaria
-                            </span>
+                            <div class="profesional-contenido card-body">
 
-                            <h3>
-                                Dra. María López
-                            </h3>
+                                <span class="especialidad">
+                                    Medicina veterinaria
+                                </span>
 
-                            <p>
-                                Atención clínica para perros y gatos.
-                            </p>
+                                <h3 class="card-title">
+                                    Dra. María López
+                                </h3>
+
+                                <p class="card-text">
+                                    Atención clínica para perros y gatos.
+                                </p>
+
+                            </div>
 
                         </div>
 
@@ -179,26 +270,32 @@
 
 
                     <!-- PROFESIONAL 2 -->
-                    <article class="profesional">
+                    <article class="profesional col-12 col-sm-6 col-lg-4">
 
-                        <img
-                            src="./img/veterinario2.jpg"
-                            alt="Profesional veterinaria"
-                        >
+                        <!-- BOOTSTRAP CARD -->
+                        <div class="card h-100">
 
-                        <div class="profesional-contenido">
+                            <img
+                                src="./img/veterinario2.jpg"
+                                alt="Profesional veterinaria"
+                                class="card-img-top img-fluid"
+                            >
 
-                            <span class="especialidad">
-                                Medicina preventiva
-                            </span>
+                            <div class="profesional-contenido card-body">
 
-                            <h3>
-                                Dra. Sofía Martínez
-                            </h3>
+                                <span class="especialidad">
+                                    Medicina preventiva
+                                </span>
 
-                            <p>
-                                Controles, vacunación y prevención.
-                            </p>
+                                <h3 class="card-title">
+                                    Dra. Sofía Martínez
+                                </h3>
+
+                                <p class="card-text">
+                                    Controles, vacunación y prevención.
+                                </p>
+
+                            </div>
 
                         </div>
 
@@ -206,30 +303,37 @@
 
 
                     <!-- PROFESIONAL 3 -->
-                    <article class="profesional">
+                    <article class="profesional col-12 col-sm-6 col-lg-4">
 
-                        <img
-                            src="./img/veterinario3.jpg"
-                            alt="Profesional veterinario"
-                        >
+                        <!-- BOOTSTRAP CARD -->
+                        <div class="card h-100">
 
-                        <div class="profesional-contenido">
+                            <img
+                                src="./img/veterinario3.jpg"
+                                alt="Profesional veterinario"
+                                class="card-img-top img-fluid"
+                            >
 
-                            <span class="especialidad">
-                                Clínica de pequeños animales
-                            </span>
+                            <div class="profesional-contenido card-body">
 
-                            <h3>
-                                Dr. Juan Pérez
-                            </h3>
+                                <span class="especialidad">
+                                    Clínica de pequeños animales
+                                </span>
 
-                            <p>
-                                Atención integral para perros y gatos.
-                            </p>
+                                <h3 class="card-title">
+                                    Dr. Juan Pérez
+                                </h3>
+
+                                <p class="card-text">
+                                    Atención integral para perros y gatos.
+                                </p>
+
+                            </div>
 
                         </div>
 
                     </article>
+
 
                 </div>
 
@@ -241,13 +345,16 @@
         <!-- MASCOTAS -->
         <section class="seccion mascotas">
 
-            <div class="contenedor mascotas-contenedor">
+            <div class="container contenedor mascotas-contenedor">
 
                 <div class="mascotas-imagen">
+
                     <img
                         src="./img/mascotas.jpg"
                         alt="Perro y gato juntos"
+                        class="img-fluid"
                     >
+
                 </div>
 
 
@@ -285,7 +392,7 @@
         <!-- LLAMADO A LA ACCIÓN -->
         <section class="cta">
 
-            <div class="contenedor">
+            <div class="container contenedor">
 
                 <h2>
                     ¿Necesitás atención para tu mascota?
@@ -312,9 +419,10 @@
     <!-- PIE DE PÁGINA -->
     <footer class="footer">
 
-        <div class="contenedor footer-contenido">
+        <div class="container contenedor footer-contenido">
 
             <div>
+
                 <h3>
                     🐾 Veterinaria La Mary
                 </h3>
@@ -322,10 +430,12 @@
                 <p>
                     Cuidamos a quienes forman parte de tu familia.
                 </p>
+
             </div>
 
 
             <div>
+
                 <h4>
                     Contacto
                 </h4>
@@ -341,6 +451,7 @@
                 <p>
                     ✉️ info@veterinarialamary.com
                 </p>
+
             </div>
 
         </div>
@@ -356,5 +467,13 @@
 
     </footer>
 
+
+    <!-- JavaScript de Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="js/app.js"></script>
+
 </body>
+
 </html>
