@@ -14,7 +14,7 @@
     >
 
     <!-- CSS propio -->
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="paginas.css">
 </head>
 
@@ -88,26 +88,23 @@
     </header>
 
 
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================== -->
+
     <main class="container-fluid py-5">
 
         <div class="container">
 
+            <!-- TÍTULO -->
 
-            <!-- =========================
-                 ENCABEZADO
-            ========================== -->
+            <section class="mb-5 text-center">
 
-            <section class="mb-5">
+                <h1>Panel de administración</h1>
 
-                <div class="text-center">
-
-                    <h1>Panel de administración</h1>
-
-                    <p>
-                        Gestioná veterinarios, mascotas, turnos e historias clínicas.
-                    </p>
-
-                </div>
+                <p>
+                    Gestioná veterinarios, mascotas, turnos e historias clínicas.
+                </p>
 
             </section>
 
@@ -155,16 +152,13 @@
 
                         </thead>
 
-                        <tbody id="tablaVeterinarios">
-
-                        </tbody>
+                        <tbody id="tablaVeterinarios"></tbody>
 
                     </table>
 
                 </div>
 
             </section>
-
 
 
             <!-- =========================
@@ -212,16 +206,13 @@
 
                         </thead>
 
-                        <tbody id="tablaMascotas">
-
-                        </tbody>
+                        <tbody id="tablaMascotas"></tbody>
 
                     </table>
 
                 </div>
 
             </section>
-
 
 
             <!-- =========================
@@ -266,16 +257,13 @@
 
                         </thead>
 
-                        <tbody id="tablaTurnos">
-
-                        </tbody>
+                        <tbody id="tablaTurnos"></tbody>
 
                     </table>
 
                 </div>
 
             </section>
-
 
 
             <!-- =========================
@@ -324,9 +312,7 @@
 
                         </thead>
 
-                        <tbody id="tablaHistoriasClinicas">
-
-                        </tbody>
+                        <tbody id="tablaHistoriasClinicas"></tbody>
 
                     </table>
 
@@ -334,16 +320,14 @@
 
             </section>
 
-
         </div>
 
     </main>
 
 
-
-    <!-- =========================
+    <!-- ==================================================
          MODAL VETERINARIO
-    ========================== -->
+    =================================================== -->
 
     <div
         class="modal fade"
@@ -476,7 +460,6 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            id="botonGuardarVeterinario"
                         >
                             Guardar veterinario
                         </button>
@@ -492,10 +475,9 @@
     </div>
 
 
-
-    <!-- =========================
+    <!-- ==================================================
          MODAL MASCOTA
-    ========================== -->
+    =================================================== -->
 
     <div
         class="modal fade"
@@ -686,7 +668,6 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            id="botonGuardarMascota"
                         >
                             Guardar mascota
                         </button>
@@ -702,10 +683,9 @@
     </div>
 
 
-
-    <!-- =========================
+    <!-- ==================================================
          MODAL TURNO
-    ========================== -->
+    =================================================== -->
 
     <div
         class="modal fade"
@@ -828,7 +808,6 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            id="botonGuardarTurno"
                         >
                             Guardar turno
                         </button>
@@ -844,10 +823,9 @@
     </div>
 
 
-
-    <!-- =========================
+    <!-- ==================================================
          MODAL HISTORIA CLÍNICA
-    ========================== -->
+    =================================================== -->
 
     <div
         class="modal fade"
@@ -856,7 +834,7 @@
         aria-hidden="true"
     >
 
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
 
             <div class="modal-content">
 
@@ -967,7 +945,7 @@
                             <textarea
                                 class="form-control"
                                 id="observacionesHistoria"
-                                rows="5"
+                                rows="6"
                                 placeholder="Escribí las observaciones de la consulta..."
                                 required
                             ></textarea>
@@ -990,7 +968,6 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            id="botonGuardarHistoria"
                         >
                             Guardar historia
                         </button>
@@ -1006,19 +983,14 @@
     </div>
 
 
-
-    <!-- =========================
-         BOOTSTRAP JS
-    ========================== -->
+    <!-- Bootstrap JavaScript -->
 
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
 
 
-    <!-- =========================
-         JAVASCRIPT PROPIO
-    ========================== -->
+    <!-- JavaScript propio -->
 
     <script src="js/app.js"></script>
 
