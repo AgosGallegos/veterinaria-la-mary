@@ -1,7 +1,5 @@
-
 // ======================================================
-// CONTROL DE AUTENTICACIÓN
-// VETERINARIA LA MARY
+// CONTROL DE AUTENTICACIÓN - VETERINARIA LA MARY
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,23 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .pop()
         .toLowerCase();
 
-    // Páginas que requieren una sesión iniciada
+    // Páginas que requieren una sesión iniciada.
     const paginasProtegidas = [
         "admin.html",
         "mascotas.html",
         "veterinarios.html"
     ];
 
-    // Verificar si la página requiere autenticación
     if (paginasProtegidas.includes(paginaActual) && !token) {
-
-        window.location.href = "login.html";
+        window.location.replace("login.html");
         return;
-
     }
 
-    // Configurar la navegación
-    configurarNavegacion(token);
+    configurarNavegacion(Boolean(token));
 
 });
 
@@ -38,66 +32,45 @@ document.addEventListener("DOMContentLoaded", () => {
 // CONFIGURAR BARRA DE NAVEGACIÓN
 // ======================================================
 
-function configurarNavegacion(token) {
+function configurarNavegacion(sesionIniciada) {
 
+    // Busca la barra de navegación principal.
     const navegacion = document.querySelector(
-        "nav .navbar-nav"
+        ".navbar-nav, nav.navbar, header nav"
     );
 
-    if (!navegacion) {
-        return;
-    }
+    if (!navegacion) return;
 
-    // Enlaces de administración
-    const enlacesAdministrativos = [
-        "admin.html",
-        "mascotas.html",
-        "veterinarios.html",
-        "turnos.html",
-        "historia-clinica.html"
-    ];
+    // Mostrar u ocultar los enlaces administrativos.
+    const enlacesAdministrativos = navegacion.querySelectorAll(
+        'a[href="admin.html"], a[href="mascotas.html"], a[href="veterinarios.html"], a[data-admin-link]'
+    );
 
-    const enlaces = navegacion.querySelectorAll("a");
-
-    enlaces.forEach(enlace => {
-
-        const destino = enlace.getAttribute("href");
-
-        if (enlacesAdministrativos.includes(destino)) {
-
-            enlace.parentElement.classList.toggle(
-                "d-none",
-                !token
-            );
-
-        }
-
+    enlacesAdministrativos.forEach(enlace => {
+        enlace.classList.toggle("d-none", !sesionIniciada);
+        enlace.setAttribute("aria-hidden", String(!sesionIniciada));
     });
 
-    // Si hay sesión iniciada
-    if (token) {
+    // Eliminar enlaces agregados anteriormente para evitar duplicados.
+    navegacion.querySelectorAll("[data-auth-link]").forEach(enlace => {
+        const contenedor = enlace.closest("li");
 
-        agregarEnlace(
-            navegacion,
-            "admin.html",
-            "Panel de Administración"
-        );
+        if (contenedor && navegacion.tagName === "UL") {
+            contenedor.remove();
+        } else {
+            enlace.remove();
+        }
+    });
 
-        agregarEnlace(
-            navegacion,
-            "#",
-            "Cerrar sesión",
-            cerrarSesion
-        );
+    if (sesionIniciada) {
+
+        // Agregar opción para cerrar sesión.
+        agregarEnlace(navegacion, "#", "Cerrar sesión", cerrarSesion);
 
     } else {
 
-        // Si no hay sesión, mostrar acceso al login
-        agregarEnlace(
-            navegacion,
-            "login.html",
-            "Iniciar sesión"
-        );
+        // Agregar opción para iniciar sesión.
+        agregarEnlace(navegacion, "login.html", "Iniciar sesión");
 
     }
 
@@ -110,37 +83,33 @@ function configurarNavegacion(token) {
 
 function agregarEnlace(navegacion, destino, texto, accion = null) {
 
-    // Evitar enlaces duplicados
-    const existe = Array.from(
-        navegacion.querySelectorAll("a")
-    ).some(enlace => enlace.textContent.trim() === texto);
+    const elemento = document.createElement("a");
 
-    if (existe) {
-        return;
-    }
-
-    const elemento = document.createElement("li");
-    elemento.className = "nav-item";
-
-    const enlace = document.createElement("a");
-
-    enlace.className = "nav-link";
-    enlace.href = destino;
-    enlace.textContent = texto;
+    elemento.className = "nav-link";
+    elemento.href = destino;
+    elemento.textContent = texto;
+    elemento.setAttribute("data-auth-link", "true");
 
     if (accion) {
-
-        enlace.addEventListener("click", evento => {
-
+        elemento.addEventListener("click", evento => {
             evento.preventDefault();
             accion();
-
         });
-
     }
 
-    elemento.appendChild(enlace);
-    navegacion.appendChild(elemento);
+    // Si la navegación utiliza listas, conserva la estructura Bootstrap.
+    if (navegacion.tagName === "UL") {
+
+        const item = document.createElement("li");
+        item.className = "nav-item";
+        item.appendChild(elemento);
+        navegacion.appendChild(item);
+
+    } else {
+
+        navegacion.appendChild(elemento);
+
+    }
 
 }
 
